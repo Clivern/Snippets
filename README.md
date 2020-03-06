@@ -11,6 +11,8 @@
 
 ## Documentation
 
+#### Installation
+
 #### MySQL Snippets
 
 `clivern-sn-create-db`: Create a database.
