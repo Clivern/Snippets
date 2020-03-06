@@ -16,7 +16,15 @@
 Go to your Sublime Text 3 Packages directory and clone the repository using the command below:
 
 ```
-git clone https://github.com/Clivern/Snippets.git Snippets
+$ cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
+$ git clone --depth 1 https://github.com/Clivern/Snippets.git Snippets
+```
+
+To update
+
+```
+$ cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/Snippets
+$ git pull origin master
 ```
 
 
