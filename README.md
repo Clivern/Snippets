@@ -15,18 +15,13 @@
 
 Go to your Sublime Text 3 Packages directory and clone the repository using the command below:
 
-```
+```zsh
 $ cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
-$ git clone --depth 1 https://github.com/Clivern/Snippets.git Snippets
+$ export SNIPPETS_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/Clivern/Snippets/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/')
+$ rm -rf Snippets
+$ curl -sL https://github.com/Clivern/Snippets/archive/{$SNIPPETS_LATEST_VERSION}.tar.gz | tar xz
+$ mv Snippets-* Snippets
 ```
-
-To update
-
-```
-$ cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/Snippets
-$ git pull origin master
-```
-
 
 #### MySQL Snippets
 
