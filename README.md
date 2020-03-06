@@ -13,7 +13,7 @@
 
 #### Installation:
 
-Go to your Sublime Text 3 Packages directory and clone the repository using the command below:
+Add the package to Sublime Text 3 packages directory:
 
 ```zsh
 $ cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
