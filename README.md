@@ -11,7 +11,7 @@
 
 ## Documentation
 
-#### Installation
+#### Installation:
 
 #### MySQL Snippets
 
