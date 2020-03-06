@@ -1,0 +1,14 @@
+============================================================
+Thank you for installing Clivern Snippets
+============================================================
+Author: Clivern
+------------------------------------------------------------
+
+This package is compatible with Sublime 3.
+
+Documentation, examples & issue filing can be found here:
+https://github.com/Clivern/Snippets
+
+------------------------------------------------------------
+
+- Put a star on github (https://github.com/Clivern/Snippets)

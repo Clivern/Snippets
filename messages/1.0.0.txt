@@ -1,0 +1,11 @@
+============================================================
+Snippets - Has been updated ! -> v1.0.0
+============================================================
+
+New Features
+------------------------------------------------------------
+- Initial Version
+
+------------------------------------------------------------
+Documentation, examples & issue filing can be found here:
+https://github.com/Clivern/Snippets
