@@ -13,6 +13,13 @@
 
 #### Installation:
 
+Go to your Sublime Text 3 Packages directory and clone the repository using the command below:
+
+```
+git clone https://github.com/Clivern/Snippets.git Snippets
+```
+
+
 #### MySQL Snippets
 
 `clivern-sn-create-db`: Create a database.
