@@ -25,8 +25,8 @@ $ mv Snippets-* Snippets
 
 #### MySQL Snippets
 
-`clivern-mysql-db-create`: Create Database.
-`clivern-mysql-db-drop`: Drop Database.
+- `clivern-mysql-db-create`: Create Database.
+- `clivern-mysql-db-drop`: Drop Database.
 
 
 ## Versioning
