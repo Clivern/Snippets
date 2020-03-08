@@ -23,7 +23,7 @@ $ curl -sL https://github.com/Clivern/Snippets/archive/{$SNIPPETS_LATEST_VERSION
 $ mv Snippets-* Snippets
 ```
 
-#### MySQL Snippets
+#### MySQL Snippets:
 
 - `clivern-mysql-db-create`: Create Database.
 - `clivern-mysql-db-drop`: Drop Database.
