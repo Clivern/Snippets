@@ -25,14 +25,15 @@ $ mv Snippets-* Snippets
 
 #### MySQL Snippets
 
-`clivern-sn-create-db`: Create a database.
+`clivern-mysql-db-create`: Create Database.
+`clivern-mysql-db-drop`: Drop Database.
 
 
 ## Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Snippets is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/clivern/beetle/releases) for changelogs for each release version of Snippets. It contains summaries of the most noteworthy changes made in each release.
+See the [Releases section of our GitHub project](https://github.com/clivern/beetle/releases) for changelogs for each release version of snippets. It contains summaries of the most noteworthy changes made in each release.
 
 
 ## Bug tracker
@@ -42,7 +43,7 @@ If you have any suggestions, bug reports, or annoyances please report them to ou
 
 ## Security Issues
 
-If you discover a security vulnerability within Snippets, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
+If you discover a security vulnerability within snippets, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
 
 
 ## Contributing
