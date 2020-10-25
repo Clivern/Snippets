@@ -25,7 +25,7 @@ Or create a symlink to snippets package
 $ ./bin/symlink.sh
 ```
 
-To show snippets avaiable, type `clivern-` in sublime IDE.
+To show all snippets available, type `clivern-` in sublime IDE.
 
 
 ## Versioning
