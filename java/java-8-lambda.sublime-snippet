@@ -1,0 +1,141 @@
+<snippet>
+  <content><![CDATA[
+import java.util.*;
+
+// Java Lambda Expression
+@FunctionalInterface
+interface StringInterface {
+    public String hello();
+}
+
+@FunctionalInterface
+interface IncrementInterface {
+    public int incrementByFive(int a);
+}
+
+@FunctionalInterface
+interface StringConcatInterface {
+    public String concat(String a, String b);
+}
+
+@FunctionalInterface
+interface DisplayInterface{
+    void display();
+}
+
+
+interface InterfaceWithDefault{
+    /*
+     * Default Methods
+     *
+     * This is a default method so we need not
+     * to implement this method in the implementation
+     * classes
+     */
+    default void newMethod(){
+        System.out.println("Newly added default method");
+    }
+
+    /* Already existing public and abstract method
+     * We must need to implement this method in
+     * implementation classes.
+     */
+    void disp(String str);
+}
+
+class Hello{
+    public static void display(){
+        System.out.println("Hello.display");
+    }
+}
+
+class Demo implements InterfaceWithDefault {
+    public void disp(String str) {
+        System.out.println(str);
+    }
+}
+
+public class ${1:App} {
+    public static void display(){
+        System.out.println("${1:App}.display");
+    }
+
+    public static void main(String[] args) {
+        StringInterface strInt = () -> {
+            return "Hello";
+        };
+
+        System.out.println(strInt.hello());
+
+        IncrementInterface incInt = (a) -> a + 5;
+
+        System.out.println(incInt.incrementByFive(1));
+
+        StringConcatInterface strConInt = (a, b) -> {
+            return String.format("%s %s", a, b);
+        };
+
+        System.out.println(strConInt.concat("Hello", "World"));
+
+        List<String> list = new ArrayList<String>();
+        list.add("Rick");
+        list.add("Negan");
+        list.add("Daryl");
+        list.add("Glenn");
+        list.add("Carl");
+
+        list.forEach((name) -> System.out.println(name));
+        list.forEach(System.out::println);
+
+        list.stream() //creating stream
+            .filter(f -> f.startsWith("R")) //filtering names that starts with R
+            .forEach(System.out::println); //displaying the stream using forEach
+
+        list.stream() //creating stream
+            .filter(f -> f.startsWith("N")) //filtering names that starts with N
+            .parallel()
+            .forEach(System.out::println); //displaying the stream using forEach
+
+        list.stream() //creating stream
+            .filter(f -> f.startsWith("C")) //filtering names that starts with C
+            .parallel()
+            .forEachOrdered(n -> System.out.println(n)); //displaying the stream using forEach
+
+        DisplayInterface ref1 = ${1:App}::display;
+        ref1.display();
+
+        DisplayInterface ref2 = Hello::display;
+        ref2.display();
+
+        (new Demo()).newMethod(); // Newly added default method
+        (new Demo()).disp("Hello"); // Hello
+
+        Map<Integer, String> hmap = new HashMap<Integer, String>();
+        hmap.put(1, "Monkey");
+        hmap.put(2, "Dog");
+        hmap.put(3, "Cat");
+        hmap.put(4, "Lion");
+        hmap.put(5, "Tiger");
+        hmap.put(6, "Bear");
+
+        hmap.forEach((key, value) -> System.out.println(key + " - " + value));
+
+        hmap.forEach((key, value) -> {
+            if (key == 4){
+                System.out.println("Value associated with key 4 is: " + value);
+            }
+        });
+
+        hmap.forEach((key, value) -> {
+            if ("Cat".equals(value)) {
+                System.out.println("Key associated with Value Cat is: " + key);
+            }
+        });
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-8-lambda</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
