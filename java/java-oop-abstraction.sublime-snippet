@@ -1,0 +1,125 @@
+<snippet>
+  <content><![CDATA[
+/**
+ * 1. We can’t instantiate an interface in java.
+ *
+ * 2) Interface provides full abstraction as none of its methods have body.
+ *  On the other hand abstract class provides partial abstraction as it can have abstract and concrete(methods with body) methods both.
+ *
+ * 3) implements keyword is used by classes to implement an interface.
+ *
+ * 4) While providing implementation in class of any method of an interface, it needs to be mentioned as public.
+ *
+ * 5) Class that implements any interface must implement all the methods of that interface, else the class should be declared abstract.
+ *
+ * 6) Interface cannot be declared as private, protected or transient.
+ *
+ * 7) All the interface methods are by default abstract and public.
+ *
+ * 8) Variables declared in interface are public, static and final by default.
+ */
+interface Base {
+    void disp();
+}
+
+interface Multiply1 extends Base {
+
+    int a = 10;
+
+    public int b = 10;
+
+    public static final int c = 10;
+
+    final int d = 10;
+
+    static int e = 0;
+
+    //abstract methods
+    public abstract int multiplyTwo(int n1, int n2);
+
+    /* We need not to mention public and abstract in interface
+     * as all the methods in interface are
+     * public and abstract by default so the compiler will
+     * treat this as
+     * public abstract multiplyThree(int n1, int n2, int n3);
+     */
+    int multiplyThree(int n1, int n2, int n3);
+
+    /* Regular (or concrete) methods are not allowed in an interface
+     * so if I uncomment this method, you will get compilation error
+     * public void disp(){
+     *    System.out.println("I will give error if u uncomment me");
+     * }
+     */
+}
+
+interface Multiply2 {
+    int x = 10;
+}
+
+class Demo implements Multiply1, Multiply2 {
+
+    public int multiplyTwo(int num1, int num2) {
+        return num1 * num2;
+    }
+
+    public int multiplyThree(int num1, int num2, int num3) {
+        return num1 * num2 * num3;
+    }
+
+    public void disp() {
+        System.out.println("x = " + a);
+        System.out.println("x = " + b);
+        System.out.println("x = " + c);
+        System.out.println("x = " + d);
+        System.out.println("x = " + e);
+        System.out.println("x = " + x);
+    }
+}
+
+abstract class Parent {
+    //This is abstract method (child has to implement)
+    abstract void abstractMethod();
+
+    //This is concrete method with body
+    void anotherMethod() {
+        System.out.println("Parent");
+    }
+}
+
+public class ${1:App} extends Parent {
+
+    public static void main(String[] args) {
+        ${1:App} app = new ${1:App}();
+
+        app.abstractMethod();
+
+        // Parent obj1 = new Parent(); // cannot be instantiated
+        Parent obj2 = new ${1:App}();
+        ${1:App} obj1 = new ${1:App}();
+
+        obj2.anotherMethod(); // Child
+        obj1.anotherMethod(); // Child
+
+
+        Demo obj = new Demo();
+        System.out.println(obj.multiplyTwo(3, 7)); // 21
+        System.out.println(obj.multiplyThree(1, 9, 0)); // 0
+        obj.disp();
+    }
+
+    // Overrides the parent disp
+    void abstractMethod() {
+        System.out.println("Child Definition");
+    }
+
+    void anotherMethod() {
+        System.out.println("Child");
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-abstraction</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

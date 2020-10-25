@@ -1,0 +1,31 @@
+<snippet>
+  <content><![CDATA[
+public class ${1:App} {
+
+    static String LANG = "EN";
+    int param = 1;
+
+    // A class can be made static only if it is a nested class.
+    // 1. Nested static class doesn't need reference of Outer class
+    // 2. A static class cannot access non-static members of the Outer class
+    static class NestedClass {
+        void disp() {
+            System.out.println(LANG);
+            System.out.println(${1:App}.LANG);
+
+            // System.out.println(param);
+            //  non-static variable param cannot be referenced from a static context
+        }
+    }
+
+    public static void main(String[] args) {
+        NestedClass nestedClass = new NestedClass();
+        nestedClass.disp();
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-staticClass</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
