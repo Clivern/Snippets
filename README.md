@@ -25,10 +25,7 @@ Or create a symlink to snippets package
 $ ./bin/symlink.sh
 ```
 
-#### MySQL Snippets:
-
-- `clivern-mysql-db-create`: Create Database.
-- `clivern-mysql-db-drop`: Drop Database.
+To show snippets avaiable, type `clivern-` in sublime IDE.
 
 
 ## Versioning
