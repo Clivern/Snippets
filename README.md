@@ -1,9 +1,9 @@
 <p align="center">
-    <img alt="Snippets Logo" src="https://raw.githubusercontent.com/clivern/Snippets/master/img/logo.png?v=1.0.0" width="150" />
+    <img alt="Snippets Logo" src="https://raw.githubusercontent.com/clivern/Snippets/master/img/logo.png?v=1.1.0" width="150" />
     <h3 align="center">Snippets</h3>
     <p align="center">Sublime Text Snippets</p>
     <p align="center">
-        <a href="https://github.com/Clivern/Snippets/releases"><img src="https://img.shields.io/badge/Version-1.0.0-red.svg"></a>
+        <a href="https://github.com/Clivern/Snippets/releases"><img src="https://img.shields.io/badge/Version-1.1.0-red.svg"></a>
         <a href="https://github.com/Clivern/Snippets/blob/master/LICENSE"><img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg"></a>
     </p>
 </p>
@@ -16,11 +16,13 @@
 Add the package to Sublime Text 3 packages directory:
 
 ```zsh
-$ cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
-$ export SNIPPETS_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/Clivern/Snippets/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/')
-$ rm -rf Snippets
-$ curl -sL https://github.com/Clivern/Snippets/archive/{$SNIPPETS_LATEST_VERSION}.tar.gz | tar xz
-$ mv Snippets-* Snippets
+$ ./bin/download.sh
+```
+
+Or create a symlink to snippets package
+
+```
+$ ./bin/symlink.sh
 ```
 
 #### MySQL Snippets:
