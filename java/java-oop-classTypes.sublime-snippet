@@ -1,0 +1,77 @@
+<snippet>
+  <content><![CDATA[
+/**
+ * a top-level class is either public or non-public. There is no "private".
+ * You can only use the public keyword or leave it off. If you leave it off it is non-public,
+ * i.e., visible only to other classes in the same package.
+ */
+public class ${1:App} {
+    public static void main(String[] args) {
+        System.out.println("Hello");
+
+        // inner class is public
+        OuterClass myOuter = new OuterClass();
+        OuterClass.publicInnerClass myInner = myOuter.new publicInnerClass();
+        System.out.println(myInner.y + myOuter.x);
+
+        // inner class is static
+        OuterClass.staticInnerClass obj1 = new OuterClass.staticInnerClass();
+        System.out.println(obj1.h);
+
+
+        // Error because inner class is private
+        // OuterClass.privateInnerClass obj3 = myOuter.new privateInnerClass();
+        // System.out.println(obj3.k);
+
+        // inner class is protected
+        OuterClass.protectedInnerClass obj4 = myOuter.new protectedInnerClass();
+        System.out.println(obj4.z);
+    }
+}
+
+class privateClass {
+    void disp() {
+        System.out.println("non-public class");
+    }
+}
+
+abstract class abstractClass {
+    //abstract method
+    public abstract void sound();
+}
+
+// A class declared with the final keyword is a final class and it cannot be extended by another class
+final class finalClass {
+    void disp() {
+        System.out.print("Final Class");
+    }
+}
+
+// an inner class can be private or protected.
+// If you don't want outside objects to access the inner class, declare the class as private.
+class OuterClass {
+    int x = 10;
+
+    class publicInnerClass {
+        int y = 5;
+    }
+
+    private class privateInnerClass {
+        int k = 5;
+    }
+
+    protected class protectedInnerClass {
+        int z = 5;
+    }
+
+    // static, which means that you can access it without creating an object of the outer class
+    static class staticInnerClass {
+        int h = 5;
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-classTypes</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

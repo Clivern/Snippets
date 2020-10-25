@@ -1,0 +1,61 @@
+<snippet>
+  <content><![CDATA[
+/**
+ * Enum constants are public, static and final (unchangeable - cannot be overridden).
+ *
+ * An enum cannot be used to create objects, and it cannot extend other classes (but it can implement interfaces).
+ */
+enum Level {
+    LOW,
+    MEDIUM,
+    HIGH;
+
+    private Level() {
+        System.out.println("Constructor called for : " +
+            this.toString());
+    }
+
+    public void levelInfo() {
+        System.out.println("...!");
+    }
+}
+
+// Attaching Values to Java Enum
+enum Element {
+    H("Hydrogen"),
+    HE("Helium"),
+    NE("Neon");
+
+    public final String label;
+
+    private Element(String label) {
+        this.label = label;
+    }
+}
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        Level lev = Level.LOW;
+        System.out.println(Level.LOW);
+        lev.levelInfo();
+
+        System.out.println(Element.H.label);
+        System.out.println(Element.HE.label);
+        System.out.println(Element.NE.label);
+
+        // Constructor called for : LOW
+        // Constructor called for : MEDIUM
+        // Constructor called for : HIGH
+        // LOW
+        // ...!
+        // Hydrogen
+        // Helium
+        // Neon
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-enum</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
