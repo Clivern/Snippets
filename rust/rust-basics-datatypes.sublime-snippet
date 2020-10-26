@@ -1,0 +1,97 @@
+<snippet>
+  <content><![CDATA[
+fn main() {
+    println!("Hello, world!");
+
+    // boolean
+    let a = true;
+    println!("{}", a);
+
+    // char
+    let b = 'a';
+    println!("{}", b);
+
+    // integers
+    let c = 5; // i32 by default
+    let d: u64 = 293402358; // 64-bit unsigned integer (explicit declaration)
+    println!("{}", c);
+    println!("{}", d);
+
+    // float
+    let pi = 3.14159265358; // f64 by default
+    println!("{}", pi);
+
+    // string
+    let e = "Clivern";
+    println!("{e}", e = e);
+
+    // arrays
+    let fruits: [&str; 4] = ["Strawberry", "Banana", "Mango", "Watermelon"];
+    println!("The first element of the array is: {}", fruits[0]);
+
+    // declare mutable variable
+    let mut counter = 0;
+    for elem in fruits.iter() {
+        println!("The element at index {} is {}", counter, elem);
+        counter += 1;
+    }
+
+    // Slices
+    // Remember upper bound is exclusive so this will select the first two elements of the fruit array
+    let slice = &fruits[0..2];
+
+    for elem in slice {
+        println!("elem is {}", elem);
+    }
+
+    // tuple
+    let tuple = ("hello", 42, "world", [3, 6, 9]);
+
+    println!("First element is {}", tuple.0);
+    println!("Second element is {}", tuple.1);
+    println!("Third element is {}", tuple.2);
+
+    let mut counter = 0;
+
+    for elem in &tuple.3 {
+        println!("Element {} of the fourth element is {}", counter, elem);
+        counter += 1;
+    }
+
+    for i in 0..5 {
+        println!("i = {}", i); // 0, 1, 2, 3, 4
+    }
+
+    for i in 0..5 {
+        if i % 2 == 0 {
+            println!("Even: {}", i);
+        } else {
+            println!("Odd: {}", i);
+        }
+    }
+
+    for i in 0..5 {
+        println!("{} {}", if i % 2 == 0 { "Even:" } else { "Odd:" }, i);
+    }
+
+    // declare mutable variable
+    let mut y = 0;
+
+    for i in 0..5 {
+        y += i;
+    }
+
+    assert_eq!(y, 0 + 1 + 2 + 3 + 4);
+
+    // Constants
+    println!("{}", std::env::consts::OS);
+    println!("{}", std::env::consts::FAMILY);
+    println!("{}", std::env::consts::ARCH);
+    println!("PI -> {}", std::f64::consts::PI);
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-basics-datatypes</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
