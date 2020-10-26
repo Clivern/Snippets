@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+public class ${1:App} {
+    public static void main(String[] args) {
+        ChildClass childClass = new ChildClass();
+        childClass.justaMethod();
+
+        // Without @SuppressWarnings("deprecation")
+        // Note: ${1:App}.java uses or overrides a deprecated API.
+        // Note: Recompile with -Xlint:deprecation for details.
+        childClass.disp();
+    }
+}
+
+class ParentClass {
+    public void justaMethod() {
+        System.out.println("Parent class method");
+    }
+
+    /**
+     * @deprecated
+     *
+     * Reason for why it was deprecated
+     */
+    @Deprecated
+    public void depMethod(){
+        System.out.println("Deprecated Method");
+    }
+}
+
+class ChildClass extends ParentClass {
+    @Override
+    public void justaMethod() {
+        System.out.println("Child class method");
+    }
+
+    @SuppressWarnings("deprecation")
+    public void disp() {
+        super.depMethod();
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-annotations</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

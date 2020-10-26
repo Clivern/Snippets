@@ -1,0 +1,86 @@
+<snippet>
+  <content><![CDATA[
+import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        (new CollectionDemo()).demo2();
+    }
+}
+
+class CollectionDemo {
+    // HashMap
+    public void demo2() {
+        HashMap < Integer, String > kmap = new HashMap < Integer, String > ();
+
+        // Adding elements to HashMap
+        kmap.put(12, "A");
+        kmap.put(49, "D");
+        kmap.put(2, "B");
+
+        HashMap < Integer, String > hmap = new HashMap < Integer, String > ();
+
+        // Adding elements to HashMap
+        hmap.put(12, "A");
+        hmap.put(49, "D");
+        hmap.put(2, "B");
+        hmap.put(3, "E");
+        hmap.put(7, "C");
+
+        // Loop through elements
+        for (Map.Entry < Integer, String > entry: hmap.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+
+            System.out.println(String.format("%d = %s", key, value));
+        }
+
+        // map size
+        System.out.println("Map size: " + hmap.size());
+
+        // returns true or false based on whether the specified key is found in the map.
+        System.out.println("Check if key exists: " + hmap.containsKey(12)); // true
+
+        // returns true or false based on whether the specified value is found in the map.
+        System.out.println("Check if value exists: " + hmap.containsValue("A")); // true
+
+        // returns the value for the specified key.
+        System.out.println("Get value by key: " + hmap.get(49));
+
+        // checks whether the map is empty.
+        System.out.println("Check if map is empty: " + hmap.isEmpty());
+
+        // removes the key-value pair for the specified key.
+        System.out.println("Remove item by key: " + hmap.remove(12));
+
+        // iterate through values of map.
+        for (String value: hmap.values()) {
+            System.out.println("Value = " + value);
+        }
+
+        // iterate through keys of map.
+        for (Integer key: hmap.keySet()) {
+            System.out.println("Key = " + key);
+        }
+
+        System.out.println(hmap); // {49=D, 2=B, 3=E, 7=C}
+
+        hmap.clear();
+
+        System.out.println(hmap); // {}
+
+        // Copies all the elements of a map to the another specified map.
+        hmap.putAll(kmap);
+
+        System.out.println(hmap); // {49=D, 2=B, 12=A}
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-collections-hashMap</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

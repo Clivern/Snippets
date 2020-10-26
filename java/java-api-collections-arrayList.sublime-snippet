@@ -1,0 +1,73 @@
+<snippet>
+  <content><![CDATA[
+import java.util.*;
+import java.util.Collections;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        (new CollectionDemo()).demo1();
+    }
+}
+
+class CollectionDemo {
+
+    // ArrayList
+    public void demo1() {
+        ArrayList<String> obj = new ArrayList<String>();
+
+        // add elements to the array
+        obj.add("A");
+        obj.add("C");
+        obj.add("B");
+        obj.add("Z");
+        obj.add("H");
+
+        // Loop through elements
+        for (String element: obj) {
+            System.out.println(element);
+        }
+
+        // Remove element with value
+        obj.remove("A");
+
+        // Remove element with index (second element)
+        obj.remove(1);
+
+        // Add element at zero index
+        obj.add(0, "A");
+
+        // Add element at the end
+        obj.add(obj.size() - 1, "K");
+
+        // Sort array
+        Collections.sort(obj);
+
+        for (String element: obj) {
+            System.out.println(element);
+        }
+
+        // Set the element at index 0 to U
+        obj.set(0, "U");
+
+        int pos = obj.indexOf("U");
+
+        System.out.println(pos); // 0
+
+        int numberofitems = obj.size();
+
+        System.out.println(numberofitems); // 5
+
+        System.out.println(obj.contains("C")); // true
+        System.out.println(obj.contains("c")); // false
+
+        obj.clear();
+        System.out.println(obj); // []
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-collections-arrayList</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

@@ -1,0 +1,124 @@
+<snippet>
+  <content><![CDATA[
+import java.util.*;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        (new CollectionDemo()).demo();
+    }
+}
+
+class CollectionDemo {
+    // LinkedList
+    public void demo() {
+        LinkedList<String> list = new LinkedList<String>();
+
+        // Adding elements to the Linked list
+        list.add("A");
+        list.add("B");
+        list.add("IO");
+        list.add("CP");
+        list.add("CH");
+        list.add("JK");
+
+        // Adding an element to the first position
+        list.addFirst("D");
+
+        // Adding an element to the last position
+        list.addLast("E");
+
+        // Adding an element to the 3rd position
+        list.add(2, "F");
+
+        // Removing First element
+        list.removeFirst();
+
+        // Removing Last element
+        list.removeLast();
+
+        // Removing 2nd element, index starts with 0
+        list.remove(1);
+
+        // removes the first element of the list
+        list.remove();
+
+        // removes the specified object from the list.
+        list.remove("B");
+
+        // fetches the first item from the list.
+        System.out.println("Get first element: " + list.getFirst());
+
+        // fetches the last item from the list.
+        System.out.println("Get last element: " + list.getLast());
+
+        // fetches an element at index
+        System.out.println("Get element at index: " + list.get(2));
+
+        // List size
+        System.out.println("List size: " + list.size());
+
+        // Check if item in a list
+        System.out.println("Check if list contains CH: " + list.contains("CH"));
+
+        // Get index of a value
+        System.out.println("Item with value CH index: " + list.indexOf("CH"));
+
+        // Returns the index of last occurrence of the specified element
+        System.out.println("Index of last occurrence of CH: " + list.lastIndexOf("CH"));
+
+        // Set element at index 2
+        list.set(2, "LO");
+
+        System.out.println(list);
+
+        // Get index of LO
+        System.out.println("Get index of LO: " + list.indexOf("LO"));
+
+        list.add("K");
+        list.add("P");
+        list.add("L");
+        list.add("T");
+        list.add("Y");
+        list.add("U");
+        list.add("Z");
+
+        // removes the first occurrence of the specified item.
+        list.removeFirstOccurrence("P");
+
+        // removes the last occurrence of the given element.
+        list.removeLastOccurrence("U");
+
+        System.out.println(list); // [IO, CP, LO, JK, K, L, T, Y, Z]
+
+        // returns and removes the first item of the list.
+        System.out.println(list.poll()); // IO
+
+        // Removes the first item of the list.
+        System.out.println(list.pollFirst()); // CP
+
+        // returns and removes the last element of the list.
+        System.out.println(list.pollLast()); // Z
+
+        Iterator < String > iterator = list.iterator();
+
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        ArrayList < String > nlist = new ArrayList < String > ();
+        nlist.add("SYU");
+        nlist.add("UIO");
+
+        // Adds all the elements of the specified collection to the list.
+        list.addAll(nlist);
+
+        System.out.println(list); // [LO, JK, K, L, T, Y, SYU, UIO]
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-collections-linkedList</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
