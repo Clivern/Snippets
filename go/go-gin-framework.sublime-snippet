@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+package main
+
+import "github.com/gin-gonic/gin"
+
+func main() {
+    r := gin.Default()
+
+    r.GET("/", func(c *gin.Context) {
+        c.JSON(200, gin.H{
+            "status":  "ok",
+        })
+    })
+
+    r.Run(":8080")
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-go-gin-framework</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,86 @@
+<snippet>
+  <content><![CDATA[
+fn hello() {
+    println!("Hello World");
+}
+
+fn sqrt(x: f64) -> f64 {
+    return x.sqrt();
+}
+
+// functions return the last statement value by default.
+fn mutiple_of_two(x: f64) -> f64 {
+    x * 2.0
+}
+
+fn abs(x: f64) -> f64 {
+    if x > 0.0 {
+        x
+    } else {
+        -x
+    }
+}
+
+// Read-only borrow.
+fn by_ref(x: &f64) -> f64 {
+    *x + 1.0
+}
+
+// Mutable borrow.
+fn modifies(x: &mut f64) {
+    *x += 1.0;
+}
+
+// we use slices
+fn arr_sum(values: &[i32]) -> i32 {
+    let mut res = 0;
+    for i in 0..values.len() {
+        res += values[i]
+    }
+    res
+}
+
+fn dump(arr: &[i32]) {
+    println!("arr is {:?}", arr);
+}
+
+// return a tuple
+fn add_mul(x: f64, y: f64) -> (f64, f64) {
+    (x + y, x * y)
+}
+
+fn main() {
+    hello(); // Hello World
+
+    let a = 20.0;
+    println!("{:?}", sqrt(a)); // 4.47213595499958
+
+    let b = 20.0;
+    println!("{:?}", mutiple_of_two(b)); // 40.0
+
+    let c = 20.0;
+    println!("{:?}", by_ref(&c)); // 21.0
+    println!("{:?}", c); // 20.0
+
+    let mut d = 20.0;
+    modifies(&mut d);
+    println!("{:?}", d); // 21.0
+
+    let arr = [10, 20, 30, 40];
+    println!("length {}", arr.len()); // length 4
+    println!("sum ~> {}", arr_sum(&arr)); // sum ~> 100
+    dump(&arr); // arr is [10, 20, 30, 40]
+
+    let (add, mul) = add_mul(3.0, 2.0); // destructuring tuple assignment using let
+    println!("add of 3.0 = {} & mul of 2.0 = {}", add, mul);
+
+    let g = -20.0;
+    println!("{:?}", abs(g)); // 20.0
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-basics-functions</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
