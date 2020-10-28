@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+import static java.lang.System.out;
+import static java.lang.Math.*;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        // instead of Math.sqrt need to use only sqrt
+        double var1 = sqrt(5.0);
+
+        // instead of Math.tan need to use only tan
+        double var2 = tan(30);
+
+        // need not to use System in both the below statements
+        out.println("Square of 5 is: " + var1);
+        out.println("Tan of 30 is: " + var2);
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-static-imports</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

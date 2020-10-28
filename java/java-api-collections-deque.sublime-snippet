@@ -1,0 +1,69 @@
+<snippet>
+  <content><![CDATA[
+import java.util.Deque;
+import java.util.ArrayDeque;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        (new CollectionDemo()).demo();
+    }
+}
+
+class CollectionDemo {
+    // Queue
+    public void demo() {
+        Deque<String> dq = new ArrayDeque<String>();
+
+        // Adding elements to the Queue
+        dq.add("B");
+        dq.add("C");
+        dq.add("D");
+        dq.add("E");
+        dq.add("F");
+        dq.add("G");
+        dq.add("H");
+
+        dq.addLast("I");
+        dq.addFirst("A");
+
+        // Deque size
+        System.out.println("Deque size: " + dq.size());
+
+        System.out.println("Elements in Deque: " + dq);
+
+        // Remove element from the end
+        System.out.println("Removed element: " + dq.removeLast());
+
+        // Remove element from the end
+        System.out.println("Removed element: " + dq.pollLast());
+
+        System.out.println("Elements in Deque: " + dq);
+
+        // It returns the first element of the Deque.
+        System.out.println(dq.getFirst());
+
+        // It returns the last element of the Deque.
+        System.out.println(dq.getLast());
+
+        // Returns the first element of Deque, or null if the Deque is empty.
+        System.out.println(dq.peekFirst());
+
+        // Returns the last element of Deque, or null if the Deque is empty.
+        System.out.println(dq.peekLast());
+
+        // Returns and removes the first element of Deque, or null if the Deque is empty.
+        System.out.println(dq.pollFirst());
+
+        // Returns and removes the last element of Deque, or null if the Deque is empty.
+        System.out.println(dq.pollLast());
+
+        System.out.println("Elements in Deque: " + dq);
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-collections-deque</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
