@@ -1,0 +1,59 @@
+<snippet>
+  <content><![CDATA[
+enum IpType {
+    V4,
+    V6,
+}
+
+struct IpAddress {
+    address: String,
+    kind: IpType,
+}
+
+enum IpAddr {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
+fn main() {
+    let ip1 = IpAddress {
+        address: "127.0.0.1".to_string(),
+        kind: IpType::V4,
+    };
+
+    let ip2 = IpAddress {
+        address: "2001:0db8:85a3:0000:0000:8a2e:0370:7334".to_string(),
+        kind: IpType::V6,
+    };
+
+    match ip1.kind {
+        IpType::V4 => {
+            println!("IPv4: {}", ip1.address.to_string());
+        },
+        IpType::V6 => {
+            println!("IPv6: {}", ip1.address.to_string());
+        },
+    };
+
+    match ip2.kind {
+        IpType::V4 => {
+            println!("IPv4: {}", ip2.address.to_string());
+        },
+        IpType::V6 => {
+            println!("IPv6: {}", ip2.address.to_string());
+        },
+    };
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-oop-enum</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>

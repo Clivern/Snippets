@@ -1,8 +1,74 @@
 <snippet>
   <content><![CDATA[
-public class ${1:App} {
+import java.util.ArrayList;
 
+
+class Person {
+    String name;
+    int age;
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "Name %s with age %d",
+            this.name,
+            this.age
+        );
+    }
 }
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("a");
+        list.add("b");
+        list.add("ca");
+        list.add("cc");
+        list.add("cb");
+        list.add("f");
+        list.add("g");
+
+        list.stream()
+            .filter(s -> s.startsWith("c"))
+            .map(String::toUpperCase)
+            .sorted()
+            .forEach(System.out::println);
+
+        // CA
+        // CB
+        // CC
+
+        ArrayList<String> nlist = new ArrayList<String>();
+
+        list.stream()
+            .filter(s -> s.startsWith("c"))
+            .map(String::toUpperCase)
+            .sorted()
+            .forEach(s -> nlist.add(s));
+
+        System.out.println(nlist); // [CA, CB, CC]
+
+        ArrayList<Person> persons = new ArrayList<Person>();
+        persons.add(new Person("B", 31));
+        persons.add(new Person("A", 90));
+        persons.add(new Person("C", 27));
+        persons.add(new Person("E", 33));
+        persons.add(new Person("D", 52));
+        persons.add(new Person("O", 11));
+
+        ArrayList<Person> personsAbove50 = new ArrayList<Person>();
+
+        persons.stream().filter(p -> p.age > 50).forEach(p -> personsAbove50.add(p));
+
+        System.out.println(personsAbove50); // [Name A with age 90, Name D with age 52]
+    }
+}
+
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>clivern-java-api-streams</tabTrigger>

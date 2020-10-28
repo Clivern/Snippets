@@ -49,6 +49,15 @@ fn add_mul(x: f64, y: f64) -> (f64, f64) {
     (x + y, x * y)
 }
 
+// Result<T, U> translate to Ok(T), Err(U)
+fn is_even(n: i32) -> Result<bool, String> {
+    if n % 2 == 0 {
+        return Ok(true);
+    }
+
+    return Err("Not an even".to_string());
+}
+
 fn main() {
     hello(); // Hello World
 
@@ -76,6 +85,27 @@ fn main() {
 
     let g = -20.0;
     println!("{:?}", abs(g)); // 20.0
+
+    // Error handling
+    let h = is_even(9);
+
+    if h.is_ok() {
+        println!("h is even");
+    } else {
+        println!("h is not even");
+    }
+
+    match h {
+        Ok(d) => {
+            assert_eq!(h, Ok(true));
+            assert_eq!(d, true);
+            println!("An even {:?}", h);
+        }
+        Err(err) => {
+            assert_eq!("Not an even".to_string(), err);
+            println!("{:?}", err);
+        }
+    }
 }
 
 ]]></content>

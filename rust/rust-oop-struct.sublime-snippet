@@ -1,0 +1,59 @@
+<snippet>
+  <content><![CDATA[
+struct Rectangle {
+    name: String,
+    width: i32,
+    height: i32,
+}
+
+impl Rectangle {
+    fn new(name: &str, width: i32, height: i32) -> Rectangle {
+        Rectangle {
+            name: name.to_string(),
+            width: width,
+            height: height,
+        }
+    }
+
+    fn set_name(&mut self, name: &str) {
+        self.name = name.to_string()
+    }
+
+    fn set_width(&mut self, width: i32) {
+        self.width = width
+    }
+
+    fn set_height(&mut self, height: i32) {
+        self.height = height
+    }
+
+    fn get_name(&self) -> String {
+        self.name.clone()
+    }
+
+    fn area(&self) -> i32 {
+        self.width * self.height
+    }
+}
+
+fn area(rt: &Rectangle) -> i32 {
+    rt.width * rt.height
+}
+
+fn main() {
+    let mut rec = Rectangle::new("rec#1", 4, 4);
+
+    rec.set_name("rec#2");
+    rec.set_width(5);
+    rec.set_height(5);
+
+    println!("Rectangle {} area {}", rec.get_name(), area(&rec));
+    println!("Rectangle {} area {}", rec.get_name(), rec.area());
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-oop-struct</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
