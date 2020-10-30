@@ -1,0 +1,76 @@
+<snippet>
+  <content><![CDATA[
+import java.lang.String;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        (new Demo()).disp();
+    }
+}
+
+class Demo {
+    void disp() {
+        // Rest of object methods https://docs.oracle.com/javase/7/docs/api/java/lang/String.html
+        String item = "Hello World";
+
+        // isEmpty check
+        System.out.println(item.isEmpty()); // false
+
+        // startsWith check and with offset
+        System.out.println(item.startsWith("H")); // true
+        System.out.println(item.startsWith("e", 1)); // true
+
+        System.out.println(item.toLowerCase());
+        System.out.println(item.toUpperCase());
+
+        System.out.println(item.substring(4));
+        System.out.println(item.substring(4, 5));
+
+        System.out.println(String.valueOf(50));
+
+        System.out.println(item.matches("(.*)\\s(.*)"));
+
+        System.out.println(item.length());
+
+        System.out.println(item.equals("hello World"));
+        System.out.println(item.equalsIgnoreCase("HELlO woRlD"));
+        System.out.println(String.format("%s: %d", "Key", 50));
+
+        System.out.println(item.split(" ")[0]);
+        System.out.println(item.split(" ")[1]);
+
+        System.out.println(item.endsWith("d"));
+
+        System.out.println(item.concat("!"));
+
+        String item1 = " HJ ";
+        System.out.println(item1.trim());
+
+        // false
+        // true
+        // true
+        // hello world
+        // HELLO WORLD
+        // o World
+        // o
+        // 50
+        // true
+        // 11
+        // false
+        // true
+        // Key: 50
+        // Hello
+        // World
+        // true
+        // Hello World!
+        // HJ
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-string</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
