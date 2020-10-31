@@ -2,14 +2,33 @@
   <content><![CDATA[
 ///// File main.rs
 mod my_mod;
+mod sub;
+
+use my_mod::my_mod as another_mod_import;
+use sub::backdoor::backdoor as another_backdoor_import;
 
 fn main() {
-    my_mod::my_mod::function() // called `my_mod::function()`
+    my_mod::my_mod::function(); // called `my_mod::function()`
+    another_mod_import::function(); // called `my_mod::function()`
+
+    another_backdoor_import::function(); // called `backdoor::function()`
+    sub::backdoor::backdoor::function(); // called `backdoor::function()`
 }
 
 
-///// File my_mod.rs
+///// File sub/backdoor.rs
+pub mod backdoor {
+    pub fn function() {
+        println!("called `backdoor::function()`");
+    }
+}
 
+
+///// File sub/mod.rs
+pub mod backdoor;
+
+
+///// File my_mod.rs
 pub mod my_mod {
     // Items in modules default to private visibility.
     fn private_function() {
