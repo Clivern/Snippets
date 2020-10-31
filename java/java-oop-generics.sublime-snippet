@@ -1,0 +1,105 @@
+<snippet>
+  <content><![CDATA[
+import java.util.AbstractList;
+import java.util.ArrayList;
+
+
+public class App {
+    public static void main(String[] args) {
+        (new Demo()).disp("Hello");
+        (new Demo()).disp(true);
+        (new Demo()).disp(20);
+
+        String[] arr = {"A", "B", "C"};
+        (new Demo()).disp(arr);
+
+        System.out.println((new Demo()).get(20.89));
+
+        (new Demo2<String>("Something")).disp();
+        (new Demo2<Integer>(20)).disp();
+        (new Demo2<Double>(230.99)).disp();
+        (new Demo2<String[]>(arr)).disp();
+
+        (new Demo3<String>("Something")).disp();
+        (new Demo3<Integer>(20)).disp();
+        (new Demo3<Double>(230.99)).disp();
+        (new Demo3<String[]>(arr)).disp();
+
+        ArrayList<String> it = new ArrayList<String>();
+        it.add("A");
+        it.add("B");
+
+        (new Demo4<ArrayList<String>>(it)).disp();
+    }
+}
+
+class Demo {
+
+    <T> void disp(T item) {
+        System.out.println(item);
+    }
+
+    <T> T get(T item) {
+        return item;
+    }
+
+    /**
+     * Generic Method Definitions
+     */
+    // public static <Type> Entry<Type, Type> twice(Type value) {
+    //     return new Entry<Type, Type>(value, value);
+    // }
+
+    /**
+     * Generic Method Definitions
+     */
+    // public static <Type1, Type2> void twice(Type1 value, Type2 value) {
+    //     //
+    // }
+}
+
+class Demo2<T> {
+
+    T value;
+
+    Demo2(T value) {
+        this.value = value;
+    }
+
+    void disp() {
+        System.out.println(this.value);
+    }
+}
+
+class Demo3<T extends Object> {
+
+    T value;
+
+    Demo3(T value) {
+        this.value = value;
+    }
+
+    void disp() {
+        System.out.println(this.value);
+    }
+}
+
+class Demo4<T extends AbstractList> {
+
+    T value;
+
+    Demo4(T value) {
+        this.value = value;
+    }
+
+    void disp() {
+        System.out.println(this.value);
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-oop-generics</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

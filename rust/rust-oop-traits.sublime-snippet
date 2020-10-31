@@ -1,0 +1,67 @@
+<snippet>
+  <content><![CDATA[
+pub trait Summary {
+    fn summarize(&self) -> String;
+
+    // Default Implementations
+    fn summarize_default(&self) -> String {
+        "@default implementations".to_string()
+    }
+}
+
+pub struct Article {
+    pub headline: String,
+}
+
+pub struct Tweet {
+    pub username: String,
+}
+
+impl Summary for Article {
+    fn summarize(&self) -> String {
+        format!("{}", self.headline)
+    }
+}
+
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        format!("{}", self.username)
+    }
+}
+
+// Traits as Parameters
+// Traits is just interfaces with default implementation ability
+fn summarize(item: &impl Summary) -> String {
+    item.summarize()
+}
+
+// Returning Types that Implement Traits
+fn new_article(headline: &str) -> impl Summary {
+    Article {
+        headline: headline.to_string(),
+    }
+}
+
+fn new_tweet(username: &str) -> impl Summary {
+    Tweet {
+        username: username.to_string(),
+    }
+}
+
+fn main() {
+    let article = new_article("Hello World");
+    let tweet = new_tweet("Clivern");
+
+    println!("{:?}", summarize(&article)); // "Hello World"
+    println!("{:?}", summarize(&tweet)); // Clivern
+
+    println!("{:?}", article.summarize()); // "Hello World"
+    println!("{:?}", tweet.summarize()); // Clivern
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-oop-traits</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
