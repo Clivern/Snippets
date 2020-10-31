@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+import java.lang.System;
+
+
+public class App {
+    public static void main(String[] args) {
+        // https://docs.oracle.com/javase/7/docs/api/java/lang/System.html
+
+        // $ java -Ddebug=Something App
+        // Something
+        if (System.getProperty("debug") != null) {
+            System.out.println(System.getProperty("debug"));
+        } else {
+            // $ java App
+            // Nothing
+            System.out.println("Nothing");
+        }
+
+        System.out.println(System.getenv());
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-system</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
