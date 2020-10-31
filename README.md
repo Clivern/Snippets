@@ -1,9 +1,9 @@
 <p align="center">
-    <img alt="Snippets Logo" src="https://raw.githubusercontent.com/clivern/Snippets/main/img/logo.png?v=1.3.0" width="150" />
+    <img alt="Snippets Logo" src="https://raw.githubusercontent.com/clivern/Snippets/main/img/logo.png?v=1.4.0" width="150" />
     <h3 align="center">Snippets</h3>
     <p align="center">Sublime Text Snippets</p>
     <p align="center">
-        <a href="https://github.com/Clivern/Snippets/releases"><img src="https://img.shields.io/badge/Version-1.3.0-red.svg"></a>
+        <a href="https://github.com/Clivern/Snippets/releases"><img src="https://img.shields.io/badge/Version-1.4.0-red.svg"></a>
         <a href="https://github.com/Clivern/Snippets/blob/master/LICENSE"><img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg"></a>
     </p>
 </p>
