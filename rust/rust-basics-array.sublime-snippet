@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+fn main() {
+    let vec01 = vec![1, 2, 3, 4, 5];
+
+    let mut vec02: Vec<i32> = Vec::new();
+    vec02.push(10);
+    vec02.push(20);
+    vec02.push(39);
+    vec02.push(45);
+
+    for i in vec01 {
+        println!("{:?}", i);
+    }
+
+    for j in vec02 {
+        println!("{:?}", j);
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-basics-array</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
