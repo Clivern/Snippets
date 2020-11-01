@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+import java.util.Optional;
+
+
+public class App {
+    public static void main(String[] args) {
+        String value1 = "Hello";
+        String value2 = null;
+
+        // allows passed parameter to be null.
+        Optional<String> a = Optional.ofNullable(value1);
+        Optional<String> b = Optional.ofNullable(value2);
+
+        // throws NullPointerException if passed parameter is null
+        // Optional<String> c = Optional.of(value2);
+
+        if (a.isPresent()) {
+            // gets the value, value should be present
+            System.out.println("a = " + a.get());
+        } else {
+            System.out.println("a is null");
+        }
+
+        if (b.isPresent()) {
+            // gets the value, value should be present
+            System.out.println("b = " + b.get());
+        } else {
+            System.out.println("b is null");
+        }
+
+        // returns the value if present otherwise returns
+        // the default value passed.
+        System.out.println("a = " + a.orElse("is null"));
+        System.out.println("b = " + b.orElse("is null"));
+
+        // Indicates whether some other object is "equal to" this Optional
+        System.out.println("A equals `Hello` " + a.equals(Optional.of("Hello")));
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-optional</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>

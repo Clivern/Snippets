@@ -1,0 +1,41 @@
+<snippet>
+  <content><![CDATA[
+use std::collections::HashMap;
+
+
+fn main() {
+    let mut hm1 = HashMap::new();
+    hm1.insert("A", 1);
+
+    let mut hm2 = HashMap::new();
+    hm2.insert(20, "A");
+
+    for (key, value) in &hm1 {
+        assert_eq!(hm1.get(key).unwrap(), value);
+    }
+
+    for (key, value) in &hm2 {
+        assert_eq!(hm2.get(key).unwrap(), value);
+    }
+
+    // insert if item not exist
+    println!("{:?}", hm1.entry("A").or_insert(20)); // 1
+    println!("{:?}", hm1.entry("B").or_insert(20)); // 20
+
+    // count words in a sentence
+    let text = "Hello world Hello some world .";
+    let mut counter = HashMap::new();
+
+    for item in text.split_whitespace() {
+        let count = counter.entry(item).or_insert(0);
+        *count += 1;
+    }
+    println!("{:?}", counter); // {".": 1, "world": 2, "Hello": 2, "some": 1}
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-basics-hashmap</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
