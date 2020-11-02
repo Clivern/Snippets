@@ -1,0 +1,97 @@
+<snippet>
+  <content><![CDATA[
+// Here, some_string goes out of scope and `drop` is called. The backing
+// memory is freed.
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string);
+}
+
+// i32 implements Copy
+fn makes_copy(some_integer: i32) {
+    println!("{}", some_integer);
+}
+
+fn gives_ownership() -> String {
+    let some_string = "Hello".to_string();
+    some_string
+}
+
+// takes_and_gives_back will take a String and return one
+fn takes_and_gives_back(a_string: String) -> String {
+    a_string // a_string is returned and moves out to the calling function
+}
+
+
+struct Point1 {
+    name: String,
+    index: i32,
+}
+
+#[derive(Copy, Clone)]
+struct Point2 {
+    // name: String -> this field does not implement `Copy`, all fields must implement Copy
+    index: i32,
+}
+
+fn takes_ownership_of_point1(ob: Point1) {
+    println!("{} {}", ob.name, ob.index);
+}
+
+fn makes_copy_of_point2(ob: Point2) {
+    println!("{}", ob.index);
+}
+
+fn main() {
+    // When a function requires a parameter by value, the compiler will check if the value can be copied by checking
+    // if it implements the trait Copy.
+    //
+    // 1. If it does, the value is copied (with a memcpy) and given to the function, and you can still continue to use your original value.
+    // 2. If it doesn't, then the value is moved to the given function, and the caller cannot use it afterward
+
+    let x = String::from("hello");
+
+    takes_ownership(x);
+
+    // println!("{:?}", x); -> error value borrowed here after move into takes_ownership
+
+    let y = "Hello".to_string();
+    takes_ownership(y.clone()); // takes a copy so y still on the scope
+    assert_eq!(y, "Hello");
+
+    let z = 5;
+    makes_copy(z);
+    assert_eq!(z, 5);
+
+    let j = gives_ownership();
+    assert_eq!(j, "Hello");
+
+    let k = "Hello".to_string();
+    assert_eq!(k, "Hello");
+
+    let l = takes_and_gives_back(k);
+    assert_eq!(l, "Hello");
+    // assert_eq!(k, "Hello"); -> fails since k not valid anymore
+
+    let point1 = Point1 {
+        name: "Point1".to_string(),
+        index: 2,
+    };
+
+    let point2 = Point2 {
+        index: 2,
+    };
+
+    takes_ownership_of_point1(point1);
+    // takes_ownership_of_point1(point1); // error! value used here after move
+
+    makes_copy_of_point2(point2);
+    makes_copy_of_point2(point2);
+    makes_copy_of_point2(point2);
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-rust-basics-ownership</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rust</scope>
+</snippet>
