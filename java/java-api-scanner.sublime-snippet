@@ -1,0 +1,49 @@
+<snippet>
+  <content><![CDATA[
+import java.util.Scanner;
+
+
+public class App {
+    public static void main(String[] args) {
+        Scanner obj = new Scanner(System.in);
+
+        System.out.println("Enter string:");
+        // Reads a String value from the user
+        String value1 = obj.nextLine();
+
+        System.out.println("Enter boolean:");
+        // Reads a boolean value from the user
+        Boolean value2 = obj.nextBoolean();
+
+        System.out.println("Enter double:");
+        // Reads a double value from the user
+        double value4 = obj.nextDouble();
+
+        System.out.println("Enter float:");
+        // Reads a float value from the user
+        float value5 = obj.nextFloat();
+
+        System.out.println("Enter int:");
+        // Reads a int value from the user
+        int value6 = obj.nextInt();
+
+        System.out.println("Enter long:");
+        // Reads a long value from the user
+        Long value7 = obj.nextLong();
+
+        System.out.println("Enter short:");
+        // Reads a short value from the user
+        Short value8 = obj.nextShort();
+
+        System.out.println("Enter byte:");
+        // Reads a byte value from the user
+        Byte value9 = obj.nextByte();
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-scanner</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
