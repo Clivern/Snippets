@@ -1,0 +1,55 @@
+<snippet>
+  <content><![CDATA[
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+public class ${1:App} {
+    public static void main(String[] args) {
+        ArrayList<Author> al = new ArrayList<Author>();
+
+        al.add(new Author("Henry", "Miller", "Tropic of Cancer"));
+        al.add(new Author("Nalo", "Hopkinson", "Brown Girl in the Ring"));
+        al.add(new Author("Frank", "Miller", "300"));
+        al.add(new Author("Deborah", "Hopkinson", "Sky Boys"));
+        al.add(new Author("George R. R.", "Martin", "Song of Ice and Fire"));
+
+        Collections.sort(al);
+
+        for (Author str : al) {
+            System.out.println(String.format(
+                "%s %s - Book: %s",
+                str.firstName,
+                str.lastName,
+                str.bookName
+            ));
+        }
+    }
+}
+
+class Author implements Comparable<Author> {
+
+    String firstName;
+    String lastName;
+    String bookName;
+
+    Author(String first, String last, String book){
+        this.firstName = first;
+        this.lastName = last;
+        this.bookName = book;
+    }
+
+    @Override
+    public int compareTo(Author au){
+        int last = this.lastName.compareTo(au.lastName);
+        //Sorting by first name if last name is same
+        return last == 0 ? this.firstName.compareTo(au.firstName) : last;
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-api-comparable</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
