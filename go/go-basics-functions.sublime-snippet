@@ -1,0 +1,37 @@
+<snippet>
+  <content><![CDATA[
+package main
+
+import (
+    "fmt"
+)
+
+func plus(a int, b int) (int, error) {
+    return a + b, nil
+}
+
+// Variadic
+func sum(nums ...int) {
+    fmt.Print(nums, " ")
+    total := 0
+    for _, num := range nums {
+        total += num
+    }
+    fmt.Println(total)
+}
+
+func main() {
+    fmt.Println(plus(1, 2))
+
+    sum(1, 2)
+    sum(1, 2, 3)
+    nums := []int{1, 2, 3, 4}
+    sum(nums...)
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-go-basics-functions</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.go</scope>
+</snippet>

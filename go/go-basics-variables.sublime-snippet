@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+package main
+
+import (
+    "fmt"
+)
+
+const n = 500000000
+
+var (
+    f = 1
+    g = "hello"
+)
+
+// Variables
+func vars() {
+    var a = "Joe"
+    var b int
+
+    b = 2;
+    c := "hello"
+    a = "Mo"
+
+    fmt.Println(b)
+    fmt.Println(c)
+    fmt.Printf("Hello %s!\n", a)
+    fmt.Println("go" + "lang")
+}
+
+func main() {
+    vars()
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-go-basics-variables</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.go</scope>
+</snippet>
