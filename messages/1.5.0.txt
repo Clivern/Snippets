@@ -1,0 +1,11 @@
+============================================================
+Snippets - Has been updated ! -> v1.5.0
+============================================================
+
+New Features
+------------------------------------------------------------
+- Golang, Java, Rust Snippets
+
+------------------------------------------------------------
+Documentation, examples & issue filing can be found here:
+https://github.com/Clivern/Snippets
