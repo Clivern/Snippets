@@ -21,18 +21,18 @@ type Circle struct {
     Radius float64
 }
 
-func (r Rect) Area() float64 {
+func (r *Rect) Area() float64 {
     return r.Width * r.Height
 }
-func (r Rect) Perim() float64 {
+func (r *Rect) Perim() float64 {
     return 2 * r.Width + 2 * r.Height
 }
 
-func (c Circle) Area() float64 {
+func (c *Circle) Area() float64 {
     return math.Pi * c.Radius * c.Radius
 }
 
-func (c Circle) Perim() float64 {
+func (c *Circle) Perim() float64 {
     return 2 * math.Pi * c.Radius
 }
 
@@ -43,8 +43,8 @@ func measure(g Geometry) {
 }
 
 func main() {
-    r := Rect{Width: 3, Height: 4}
-    c := Circle{Radius: 5}
+    r := &Rect{Width: 3, Height: 4}
+    c := &Circle{Radius: 5}
 
     measure(r)
     measure(c)
