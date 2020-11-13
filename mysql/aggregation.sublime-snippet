@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+DROP DATABASE IF EXISTS ${1:app};
+
+CREATE DATABASE IF NOT EXISTS ${1:app};
+
+USE ${1:app};
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-mysql-aggregation</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.sql</scope>
+</snippet>

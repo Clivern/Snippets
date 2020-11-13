@@ -1,0 +1,115 @@
+<snippet>
+  <content><![CDATA[
+DROP DATABASE IF EXISTS ${1:app};
+
+CREATE DATABASE IF NOT EXISTS ${1:app};
+
+USE ${1:app};
+
+CREATE TABLE customer (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+CREATE TABLE movie (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT NULL,
+    name VARCHAR(100),
+
+    FOREIGN KEY (customer_id)
+        REFERENCES customer (id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+
+INSERT INTO customer(name, email)
+VALUES('Joe', "joe@example.com"),
+      ('Mark', "mark@example.com"),
+      ('Ellie', "ellie@example.com"),
+      ('Selen', "selen@example.com"),
+      ('Dag', "dag@example.com");
+
+INSERT INTO movie(customer_id, name)
+VALUES(1, "Movie A"),
+      (2, "Movie B"),
+      (NULL, "Movie C"),
+      (NULL, "Movie D"),
+      (4, "Movie E");
+
+##############################
+# INNER JOIN
+#
+# It is used to return all rows from multiple tables where the join condition is satisfied. It is the most common type of join.
+##############################
+
+# Get All Orders
+SELECT
+    customer.id AS customerId,
+    customer.name AS customerName,
+    customer.email AS customerEmail,
+    movie.name AS movieName
+    FROM customer
+        INNER JOIN movie on customer.id = movie.customer_id;
+
+# Result
+# customerId  customerName    customerEmail     movieName
+# 1             Joe          joe@example.com     Movie A
+# 2             Mark         mark@example.com    Movie B
+# 4             Selen        selen@example.com   Movie E
+
+##############################
+# LEFT JOIN
+#
+# The LEFT JOIN returns all the rows from the table on the left even if no matching rows have been found in the table on the right.
+# Where no matches have been found in the table on the right, NULL is returned.
+##############################
+
+# Get all customers and movie borrowed if there is any
+SELECT
+    customer.id as customerId,
+    customer.name AS customerName,
+    customer.email AS customerEmail,
+    movie.id AS movieId,
+    movie.name AS movieName
+    FROM customer
+        LEFT JOIN movie on customer.id = movie.customer_id;
+
+# Result
+# customerId  customerName    customerEmail   movieId      movieName
+# 1             Joe          joe@example.com     1          Movie A
+# 2             Mark         mark@example.com    2          Movie B
+# 3             Ellie        ellie@example.com   NULL         NULL
+# 4             Selen        selen@example.com   5          Movie E
+# 5             Dag          dag@example.com     NULL         NULL
+
+##############################
+# RIGHT JOIN
+#
+# The RIGHT JOIN returns all the rows from the table on the right even if no matching rows have been found in the table on the left.
+# Where no matches have been found in the table on the left, NULL is returned.
+##############################
+
+SELECT
+    customer.id AS customerId,
+    customer.name AS customerName,
+    customer.email AS customerEmail,
+    movie.id AS movieId,
+    movie.name AS movieName
+    FROM customer
+        RIGHT JOIN movie on customer.id = movie.customer_id;
+
+# Result
+# customerId  customerName    customerEmail      movieId   movieName
+# 1              Joe          joe@example.com      1        Movie A
+# 2              Mark         mark@example.com     2        Movie B
+# NULL           NULL               NULL           3        Movie C
+# NULL           NULL               NULL           4        Movie D
+# 4              Selen        selen@example.com    5        Movie E
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-mysql-join-02</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.sql</scope>
+</snippet>

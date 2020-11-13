@@ -1,0 +1,105 @@
+<snippet>
+  <content><![CDATA[
+DROP DATABASE IF EXISTS ${1:app};
+
+CREATE DATABASE IF NOT EXISTS ${1:app};
+
+USE ${1:app};
+
+CREATE TABLE app_article (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    identifier VARCHAR(100),
+    name VARCHAR(100),
+    quantity INT
+);
+
+CREATE TABLE app_product (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    price DECIMAL(13,2) NOT NULL,
+    currency VARCHAR(10)
+);
+
+CREATE TABLE app_product_articles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    article_id INT,
+    product_id INT,
+    quantity INT,
+    KEY (article_id , product_id),
+
+    FOREIGN KEY (article_id)
+        REFERENCES app_article (id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (product_id)
+        REFERENCES app_product (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO app_article(identifier, name, quantity)
+VALUES('I#1', "leg", 12),
+      ('I#2', "screw", 17),
+      ('I#3 Pro', "seat", 2),
+      ('I#4', "table top", 1);
+
+
+INSERT INTO app_product(name, price, currency)
+VALUES("Dining Chair", "20.1", "EUR"),
+      ("Dinning Table", "20.2", "EUR");
+
+INSERT INTO app_product_articles(article_id, product_id, quantity)
+VALUES(1, 1, 4),
+      (2, 1, 8),
+      (3, 1, 1),
+      (1, 2, 4),
+      (2, 2, 8),
+      (4, 2, 1);
+
+
+##############################
+# INNER JOIN
+#
+# It is used to return all rows from multiple tables where the join condition is satisfied. It is the most common type of join.
+##############################
+
+SELECT
+    app_product.name AS productName,
+    app_product.price AS productPrice,
+    app_article.name AS articleName,
+    app_article.quantity AS articleTotalQuantity,
+    app_product_articles.quantity AS articleQuantityInProduct
+    FROM app_product_articles
+        INNER JOIN app_article on app_article.id = app_product_articles.article_id
+        INNER JOIN app_product on app_product.id = app_product_articles.product_id;
+
+# Result
+# productName            productPrice    articleName        articleTotalQuantity    articleQuantityInProduct
+# Dining Chair               20.10         leg                    12                            4
+# Dining Chair               20.10         screw                  17                            8
+# Dining Chair               20.10         seat                    2                            1
+# Dinning Table              20.20         leg                    12                            4
+# Dinning Table              20.20         screw                  17                            8
+# Dinning Table              20.20         table top               1                            1
+
+SELECT
+    app_product.name AS productName,
+    app_product.price AS productPrice,
+    app_article.name AS articleName,
+    app_article.quantity AS articleTotalQuantity,
+    app_product_articles.quantity AS articleQuantityInProduct
+    FROM app_product_articles
+        INNER JOIN app_article on app_article.id = app_product_articles.article_id
+        INNER JOIN app_product on app_product.id = app_product_articles.product_id
+    WHERE app_product.id = 2;
+
+# Result
+# productName            productPrice    articleName        articleTotalQuantity    articleQuantityInProduct
+# Dinning Table              20.20         leg                    12                            4
+# Dinning Table              20.20         screw                  17                            8
+# Dinning Table              20.20         table top               1                            1
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-mysql-join-03</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.sql</scope>
+</snippet>
