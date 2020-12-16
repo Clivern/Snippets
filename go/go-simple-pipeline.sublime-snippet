@@ -1,0 +1,77 @@
+<snippet>
+  <content><![CDATA[
+package main
+
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+const WorkersCount = 10000
+
+func main() {
+    Store(Process(Generate(1000000)))
+}
+
+func Generate(max int) <-chan int {
+    channel := make(chan int)
+
+    go func() {
+        for {
+
+            for i := 0; i < max; i++ {
+                channel <- i
+            }
+
+            break
+        }
+
+        close(channel)
+    }()
+
+    return channel
+}
+
+func Process(inputChannel <-chan int) <-chan string {
+    outChannel := make(chan string)
+
+    go func() {
+        wg := &sync.WaitGroup{}
+
+        for t := 0; t < WorkersCount; t++{
+            wg.Add(1)
+            go ProcessInput(inputChannel, outChannel, wg)
+        }
+
+        wg.Wait()
+
+        close(outChannel)
+    }()
+
+    return outChannel
+}
+
+func ProcessInput(inputChannel <-chan int, outChannel chan<- string, wg *sync.WaitGroup) {
+    for input := range inputChannel {
+        fmt.Printf("Started Processing %d\n", input)
+
+        time.Sleep(3 * time.Second)
+
+        outChannel <- fmt.Sprintf("%d Done!", input)
+    }
+    wg.Done()
+}
+
+func Store(channel <-chan string) {
+    for result := range channel {
+        fmt.Println(result)
+    }
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-go-simple-pipeline</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.go</scope>
+</snippet>
