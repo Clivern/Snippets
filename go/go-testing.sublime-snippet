@@ -1,0 +1,66 @@
+<snippet>
+  <content><![CDATA[
+package main
+
+import (
+    "testing"
+
+    "github.com/franela/goblin"
+)
+
+// Sum ...
+func Sum(ar []int) int {
+    result := 0
+
+    for _, v := range ar {
+        result += v
+    }
+
+    return result
+}
+
+// TestSum test cases
+func TestSum(t *testing.T) {
+    g := goblin.Goblin(t)
+
+    g.Describe("#SumFunc", func() {
+        g.It("It should satisfy all provided test cases", func() {
+            var tests = []struct {
+                input  []int
+                result int
+            }{
+                {[]int{1, 2, 3, 4, 5}, 15},
+                {[]int{3, 4, 5}, 12},
+                {[]int{36, 98, 63, 3628, 2863, 27392, 883929}, 918009},
+                {[]int{36, 21, 63, 12, 56, 90, 32}, 310},
+                {[]int{123, 283, 345, 544, 332, 4455, 1233}, 7315},
+            }
+
+            for _, tt := range tests {
+                g.Assert(Sum(tt.input)).Equal(tt.result)
+            }
+        })
+    })
+}
+
+// BenchmarkSum benchmark
+func BenchmarkSum(b *testing.B) {
+    var input []int
+
+    for n := 0; n < b.N; n++ {
+        input = append(input, n)
+    }
+
+    b.Logf("Sum function input length %v \n", len(input))
+
+    Sum(input)
+}
+
+// go test -bench=. -benchmem -v -cover
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-go-testing</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.go</scope>
+</snippet>
