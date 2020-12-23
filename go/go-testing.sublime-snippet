@@ -27,7 +27,7 @@ func TestSum(t *testing.T) {
         g.It("It should satisfy all provided test cases", func() {
             var tests = []struct {
                 input  []int
-                result int
+                wantResult int
             }{
                 {[]int{1, 2, 3, 4, 5}, 15},
                 {[]int{3, 4, 5}, 12},
@@ -37,7 +37,7 @@ func TestSum(t *testing.T) {
             }
 
             for _, tt := range tests {
-                g.Assert(Sum(tt.input)).Equal(tt.result)
+                g.Assert(Sum(tt.input)).Equal(tt.wantResult)
             }
         })
     })
