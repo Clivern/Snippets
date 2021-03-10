@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Snippets Logo" src="https://raw.githubusercontent.com/clivern/Snippets/main/img/logo.png?v=1.5.0" width="150" />
+    <img alt="Snippets Logo" src="https://cdn.worldvectorlogo.com/logos/sublime-text.svg" width="150" />
     <h3 align="center">Snippets</h3>
     <p align="center">Sublime Text Snippets</p>
     <p align="center">
