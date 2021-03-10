@@ -1,0 +1,68 @@
+<snippet>
+  <content><![CDATA[
+package main
+
+import (
+    "errors"
+    "io"
+    "os"
+)
+
+func main() {
+    for {
+        value, err := ReadChar(os.Stdin)
+
+        if err != nil {
+            panic(err)
+        }
+
+        err = PutChar(os.Stdout, value)
+
+        if err != nil {
+            panic(err)
+        }
+    }
+}
+
+// PutChar writes char to the output stream
+func PutChar(out io.Writer, char int) error {
+    buf := make([]byte, 1)
+
+    buf[0] = byte(char)
+
+    n, err := out.Write(buf)
+
+    if err != nil {
+        return err
+    }
+
+    if n != 1 {
+        return errors.New("wrong bytes written")
+    }
+
+    return nil
+}
+
+// ReadChar reads char from the input stream
+func ReadChar(in io.Reader) (int, error) {
+    buf := make([]byte, 1)
+
+    n, err := in.Read(buf)
+
+    if err != nil {
+        return 0, err
+    }
+
+    if n != 1 {
+        return 0, errors.New("wrong bytes read")
+    }
+
+    return int(buf[0]), nil
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-go-basics-io</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.go</scope>
+</snippet>
