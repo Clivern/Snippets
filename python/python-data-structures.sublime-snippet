@@ -680,6 +680,43 @@ class BinaryTree:
         print(self.value)
 
 
+class Deque():
+    """Deque DST""
+
+    def __init__(self):
+        self._items = []
+
+    def add_front(self, item):
+        """
+        Add to the front
+        """
+        self._items.append(item)
+
+    def add_rear(self, item):
+        """
+        Add to the back
+        """
+        self._items.insert(0, item)
+
+    def remove_front(self):
+        """
+        Remove from the front
+        """
+        return self._items.pop()
+
+    def remove_rear(self):
+        """
+        Remove from the back
+        """
+        return self._items.pop(0)
+
+    def size(self):
+        """
+        Get the size
+        """
+        return len(self._items)
+
+
 class Sets():
     pass
 

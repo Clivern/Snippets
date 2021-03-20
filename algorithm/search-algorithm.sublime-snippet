@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+def binary_search(lst, target, left, right):
+    """
+    binary search
+    """
+    if right >= left:
+        mid = int((left + right) / 2)
+
+        if lst[mid] == target:
+            return mid
+        elif lst[mid] > target:
+            return binary_search(lst, target, left, mid - 1)
+        elif lst[mid] < target:
+            return binary_search(lst, target, mid + 1, right)
+    else:
+        return -1
+
+
+def linear_search(lst, target):
+    """
+    linear search
+    """
+    for i in range(len(lst)):
+        if lst[i] == target:
+            return i
+    return -1
+
+
+if __name__ == '__main__':
+    assert binary_search([1, 2, 3, 4, 5, 6, 7, 8], 7, 0, len([1, 2, 3, 4, 5, 6, 7, 8]) - 1) == 6
+    assert linear_search([1, 2, 3, 4, 5, 6, 7, 8], 7) == 6
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-search-algorithm</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>

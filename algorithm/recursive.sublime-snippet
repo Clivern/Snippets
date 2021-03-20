@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+def recursive(i):
+    if i <= 0:
+        print("Done")
+        return
+    else:
+        print(i)
+        return recursive(i-1)
+
+
+if __name__ == '__main__':
+    recursive(100)
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-recursive-algorithm</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>
