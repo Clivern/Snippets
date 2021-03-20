@@ -2,7 +2,7 @@
   <content><![CDATA[
 def binary_search(lst, target, left, right):
     """
-    binary search
+    Binary Search O(log(n))
     """
     if right >= left:
         mid = int((left + right) / 2)
@@ -19,7 +19,7 @@ def binary_search(lst, target, left, right):
 
 def linear_search(lst, target):
     """
-    linear search
+    Linear Search O(n)
     """
     for i in range(len(lst)):
         if lst[i] == target:

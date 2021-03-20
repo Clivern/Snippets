@@ -1,0 +1,43 @@
+<snippet>
+  <content><![CDATA[
+graph = {
+  'A' : ['B','C'],
+  'B' : ['D', 'E'],
+  'C' : ['F'],
+  'D' : [],
+  'E' : ['F'],
+  'F' : []
+}
+
+def bfs(graph, node):
+    """
+    Breath-first search (BFS) is an algorithm used for tree traversal on graphs or tree data structures
+    """
+    visited = []
+    queue = []
+
+    visited.append(node)
+    queue.append(node)
+
+    while queue:
+        s = queue.pop(0)
+        print(s, end=" ")
+
+        for node in graph[s]:
+            if node not in visited:
+                visited.append(node)
+                queue.append(node)
+
+
+
+if __name__ == '__main__':
+    bfs(graph, "A") # A B C D E F
+    print("\n")
+    bfs(graph, "B") # B D E F
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-bfs-algorithm</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>

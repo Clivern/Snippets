@@ -23,7 +23,7 @@ def selection_sort(lst):
 
 def quick_sort(lst):
     """
-    Quick Sort
+    Quick Sort O(n * log(n))
     """
     if len(lst) <= 1:
         return lst
