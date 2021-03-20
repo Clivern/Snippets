@@ -681,7 +681,7 @@ class BinaryTree:
 
 
 class Deque():
-    """Deque DST""
+    """Deque DST"""
 
     def __init__(self):
         self._items = []
