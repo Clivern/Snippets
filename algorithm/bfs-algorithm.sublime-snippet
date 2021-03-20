@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-graph = {
+graph1 = {
   'A' : ['B','C'],
   'B' : ['D', 'E'],
   'C' : ['F'],
@@ -9,7 +9,7 @@ graph = {
   'F' : []
 }
 
-def bfs(graph, node):
+def bfs_connected_component(graph, node):
     """
     Breath-first search (BFS) is an algorithm used for tree traversal on graphs or tree data structures
     """
@@ -29,11 +29,42 @@ def bfs(graph, node):
                 queue.append(node)
 
 
+# graph is in adjacent list representation
+graph2 = {
+        '1': ['2', '3', '4'],
+        '2': ['5', '6'],
+        '5': ['9', '10', '6'],
+        '4': ['7', '8'],
+        '7': ['11', '12'],
+        '6': ['10'],
+        }
+
+def bfs_shortest_path(graph, start, end):
+    # maintain a queue of paths
+    queue = []
+    # push the first path into the queue
+    queue.append([start])
+
+    while queue:
+        # get the first path from the queue
+        path = queue.pop(0)
+        # get the last node from the path
+        node = path[-1]
+        # path found
+        if node == end:
+            return path
+        # enumerate all adjacent nodes, construct a new path and push it into the queue
+        for adjacent in graph.get(node, []):
+            new_path = list(path)
+            new_path.append(adjacent)
+            queue.append(new_path)
 
 if __name__ == '__main__':
-    bfs(graph, "A") # A B C D E F
+    bfs_connected_component(graph1, "A") # A B C D E F
     print("\n")
-    bfs(graph, "B") # B D E F
+    bfs_connected_component(graph1, "B") # B D E F
+
+    assert bfs_shortest_path(graph2, '1', '10') == ['1', '2', '5', '10']
 
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
