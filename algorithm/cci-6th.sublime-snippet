@@ -1,0 +1,139 @@
+<snippet>
+  <content><![CDATA[
+########################
+###### CCI 6th #########
+########################
+
+#------------------------------------------------------------------------
+
+from collections import Counter
+
+
+def is_unique(word):
+    # O(N)
+    # ASCII Table Chars
+    chars_set = [False for i in range(128)]
+
+    for char in word:
+        val = ord(char)
+        if chars_set[val]:
+            return False
+        chars_set[val] = True
+
+    return True
+
+
+def is_permutation(str1, str2):
+    # O(N)
+    # Check if both has the same letters
+    if len(str1) != len(str2):
+        return False
+
+    # It could be a dict too
+    counter = Counter()
+
+    for char in str1:
+        counter[char] += 1
+
+    for char in str2:
+        if counter[char] == 0:
+            return False
+        counter[char] -= 1
+
+    return True
+
+
+def urlify(string, length):
+    # O(N)
+    # By creating a temp string
+    new_str = ''
+
+    for char in string.strip():
+        if char == ' ':
+            new_str += '%20'
+        else:
+            new_str += char
+
+    return new_str
+
+
+def is_palindrome(word):
+    # Check if string same as the reverse
+    return word.lower() == word[::-1].lower()
+
+
+if __name__ == '__main__':
+    assert is_unique('heh') == False
+    assert is_unique('Helo') == True
+
+    assert is_permutation('sdc', 'csd') == True
+    assert is_permutation('abcd', 'd2cba') == False
+    assert is_permutation('dcw4f', 'dcw5f') == False
+    assert is_permutation('wef34f', 'wffe34') == True
+
+    assert urlify('much ado about nothing      ', 12) == 'much%20ado%20about%20nothing'
+    assert urlify('Mr John Smith    ', 13) == 'Mr%20John%20Smith'
+
+    assert is_palindrome('Anna') == True
+    assert is_palindrome('Kayak') == True
+    assert is_palindrome('Level') == True
+    assert is_palindrome('Noon') == True
+    assert is_palindrome('oon') == False
+    assert is_palindrome('Leve') == False
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+if __name__ == '__main__':
+    pass
+#------------------------------------------------------------------------
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-cci-6th</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>
