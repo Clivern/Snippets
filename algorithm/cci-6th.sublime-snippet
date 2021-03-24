@@ -5,7 +5,6 @@
 ########################
 
 #------------------------------------------------------------------------
-
 from collections import Counter
 
 
@@ -62,6 +61,111 @@ def is_palindrome(word):
     return word.lower() == word[::-1].lower()
 
 
+def one_way(s1, s2):
+    # O(N)
+    # Check if a string can converted to another string with a single edit
+    if len(s1) == len(s2):
+        return one_edit_replace(s1, s2)
+    elif len(s1) + 1 == len(s2):
+        return one_edit_insert(s1, s2)
+    elif len(s1) - 1 == len(s2):
+        return one_edit_insert(s2, s1)
+    return False
+
+
+def one_edit_replace(s1, s2):
+    edited = False
+    for char1, char2 in zip(s1, s2):
+        if char1 != char2:
+            if edited:
+                return False
+            edited = True
+    return True
+
+
+def one_edit_insert(s1, s2):
+    edited = False
+    i, j = 0, 0
+    while i < len(s1) and j < len(s2):
+        if s1[i] != s2[j]:
+            if edited:
+                return False
+            edited = True
+            j += 1
+        else:
+            i += 1
+            j += 1
+    return True
+
+
+def compression(s):
+    # O(N)
+    # Return a compressed string if the length will be smaller
+    current_char = None
+    counter = 0
+    output = ""
+
+    for i in range(len(s)):
+        if current_char is None:
+            current_char = s[i]
+
+        if current_char == s[i]:
+            counter += 1
+
+        # End of string, update output
+        if i == len(s)-1:
+            output += "{}{}".format(current_char, counter)
+
+        # Current char is different from the next char, update output and reset counter
+        elif s[i] != s[i+1]:
+            output += "{}{}".format(current_char, counter)
+            current_char = None
+            counter = 0
+
+    # Return compressed string if only it is less than the original
+    return output if len(s) > len(output) else s
+
+
+def is_substring(s1, s2):
+    # O(N)
+    # Check if s2 is a rotation of s1
+    if len(s1) == len(s2) != 0:
+        return "{}{}".format(s1, s1).find(s2) != -1
+    return False
+
+
+def zero_matrix(matrix):
+    # O(MxN)
+    # Add zeros to cols and rows where there is a zero
+    rows_count = len(matrix)
+    cols_count = len(matrix[0])
+
+    rows = []
+    cols = []
+
+    for row_pos in range(rows_count):
+        for col_pos in range(cols_count):
+            if matrix[row_pos][col_pos] == 0:
+                # Null row and column
+                cols.append(col_pos)
+                rows.append(row_pos)
+
+    for row_pos in rows:
+        for col_pos in range(cols_count):
+            matrix[row_pos][col_pos] = 0
+
+    for col_pos in cols:
+        for row_pos in range(rows_count):
+            matrix[row_pos][col_pos] = 0
+
+    return matrix
+
+
+def rotate_matrix(matrix):
+    # Rotates a matrix 90 degrees clockwise
+    pass
+
+
 if __name__ == '__main__':
     assert is_unique('heh') == False
     assert is_unique('Helo') == True
@@ -80,13 +184,278 @@ if __name__ == '__main__':
     assert is_palindrome('Noon') == True
     assert is_palindrome('oon') == False
     assert is_palindrome('Leve') == False
+
+    assert one_way('pales', 'pale') == True
+    assert one_way('pale', 'bale') == True
+    assert one_way('paleabc', 'pleabc') == True
+    assert one_way('pale', 'ble') == False
+    assert one_way('a', 'b') == True
+    assert one_way('', 'd') == True
+    assert one_way('d', 'de') == True
+    assert one_way('pale', 'pale') == True
+    assert one_way('pale', 'ple') == True
+    assert one_way('ple', 'pale') == True
+    assert one_way('pale', 'bale') == True
+    assert one_way('pale', 'bake') == False
+
+    assert compression('deelo') == 'deelo'
+    assert compression('aabcccccaaa') == 'a2b1c5a3'
+    assert compression('abcdef') == 'abcdef'
+
+    assert is_substring('waterbottle', 'erbottlewat') == True
+    assert is_substring('foo', 'bar') == False
+    assert is_substring('foo', 'foofoo') == False
+
+    matrix = [
+        [1, 2, 3, 4, 0],
+        [6, 0, 8, 9, 10],
+        [11, 12, 13, 14, 15],
+        [16, 0, 18, 19, 20],
+        [21, 22, 23, 24, 25]
+    ]
+
+    result = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [11, 0, 13, 14, 0],
+        [0, 0, 0, 0, 0],
+        [21, 0, 23, 24, 0]
+    ]
+
+    assert zero_matrix(matrix) == result
+
 #------------------------------------------------------------------------
 
 
 
 #------------------------------------------------------------------------
+class SingleNode():
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+
+    def __repr__(self):
+        return repr(self.data)
+
+
+class DoubleNode():
+    def __init__(self, data=None, prev=None, next=None):
+        self.data = data
+        self.prev = prev
+        self.next = next
+
+    def __repr__(self):
+        return repr(self.data)
+
+
+class SingleLinkedList():
+
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        if self.head == None:
+            self.head = SingleNode(data)
+        else:
+            curr = self.head
+            while curr.next:
+                curr = curr.next
+            curr.next = SingleNode(data)
+
+    def prepend(self, data):
+        self.head = SingleNode(data, next=self.head)
+
+    def remove_duplicates(self):
+        values = []
+        curr = self.head
+
+        if curr:
+            values.append(curr.data)
+
+        while curr.next:
+            if curr.next.data in values:
+                # Remove
+                curr.next = curr.next.next
+            else:
+                values.append(curr.next.data)
+                curr = curr.next
+
+    def find(self, data):
+        curr = self.head
+        while curr:
+            if curr.data == data:
+                return curr
+            curr = curr.next
+
+        return None
+
+    def remove(self, data):
+        curr = self.head
+
+        if curr and curr.data == data:
+            self.head = curr.next
+
+        while curr.next:
+            if curr.next.data == data:
+                curr.next = curr.next.next
+            curr = curr.next
+
+    def reverse(self):
+        new = None
+        curr = self.head
+
+        while curr:
+            new = SingleNode(curr.data, next=new)
+            curr = curr.next
+
+        self.head = new
+
+    def __repr__(self):
+        data = []
+        curr = self.head
+
+        while curr:
+            data.append(curr.data)
+            curr = curr.next
+        return "[" + ", ".join(data) + "]"
+
+
+class DoubleLinkedList():
+
+    def __init__(self):
+        self.head = None
+
+    def find(self, data):
+        curr = self.head
+
+        while curr:
+            if curr.data == data:
+                return curr
+            curr = curr.next
+        return None
+
+    def prepend(self, data):
+        if not self.head:
+            self.head = DoubleNode(data)
+        else:
+            self.head.prev = DoubleNode(data, prev=None, next=self.head)
+            self.head = self.head.prev
+
+    def append(self, data):
+        if not self.head:
+            self.head = DoubleNode(data)
+        else:
+            curr = self.head
+            while curr.next:
+                curr = curr.next
+            curr.next = DoubleNode(data, prev=curr, next=None)
+
+    def remove(self, data):
+        curr = self.head
+
+        if curr and curr.data == data:
+            curr.next.prev = None
+            self.head = curr.next
+        else:
+            while curr.next:
+                if curr.next.data == data:
+                    curr.next = curr.next.next
+                    curr.next.prev = curr
+                curr = curr.next
+
+    def reverse(self):
+        new = None
+
+        curr = self.head
+
+        while curr:
+            if not new:
+                new = DoubleNode(curr.data, prev=None, next=new)
+            else:
+                new.prev = DoubleNode(curr.data, prev=None, next=new)
+                new = new.prev
+            curr = curr.next
+
+        self.head = new
+
+    def __repr__(self):
+        data = []
+        curr = self.head
+
+        while curr:
+            text = ""
+            if curr.prev:
+                text += str(curr.prev.data)
+            else:
+                text += "NULL"
+
+            text += " <- (" + curr.data + ") -> "
+
+            if curr.next:
+                text += str(curr.next.data)
+            else:
+                text += "NULL"
+
+            data.append(text)
+            curr = curr.next
+
+        return "[" + ", ".join(data) + "]"
+
+
 if __name__ == '__main__':
-    pass
+    linked_list = SingleLinkedList()
+    linked_list.append("C")
+    linked_list.append("D")
+    linked_list.append("E")
+    linked_list.append("F")
+    linked_list.prepend("B")
+    linked_list.prepend("A")
+
+    assert str(linked_list) == "[A, B, C, D, E, F]"
+
+    linked_list.prepend("A")
+    linked_list.prepend("C")
+    linked_list.remove_duplicates()
+
+    assert str(linked_list) == "[C, A, B, D, E, F]"
+
+    linked_list.remove("C")
+    linked_list.remove("E")
+
+    assert str(linked_list) == "[A, B, D, F]"
+    assert str(linked_list.find("B").data) == 'B'
+    assert str(linked_list.find("F").data) == 'F'
+    assert str(linked_list.find("A").data) == 'A'
+    assert linked_list.find("J") == None
+
+    linked_list.reverse()
+    assert str(linked_list) == "[F, D, B, A]"
+    linked_list.reverse()
+    assert str(linked_list) == "[A, B, D, F]"
+
+    linked_list = DoubleLinkedList()
+    linked_list.append("C")
+    linked_list.append("D")
+    linked_list.append("E")
+    linked_list.append("F")
+    linked_list.prepend("B")
+    linked_list.prepend("A")
+    assert str(linked_list) == "[NULL <- (A) -> B, A <- (B) -> C, B <- (C) -> D, C <- (D) -> E, D <- (E) -> F, E <- (F) -> NULL]"
+
+    linked_list.remove("E")
+    linked_list.remove("A")
+
+    assert str(linked_list) == "[NULL <- (B) -> C, B <- (C) -> D, C <- (D) -> F, D <- (F) -> NULL]"
+
+    assert str(linked_list.find("B").data) == 'B'
+    assert str(linked_list.find("F").data) == 'F'
+    assert linked_list.find("J") == None
+
+    linked_list.reverse()
+    assert str(linked_list) == "[NULL <- (F) -> D, F <- (D) -> C, D <- (C) -> B, C <- (B) -> NULL]"
+
+    linked_list.reverse()
+    assert str(linked_list) == "[NULL <- (B) -> C, B <- (C) -> D, C <- (D) -> F, D <- (F) -> NULL]"
 #------------------------------------------------------------------------
 
 
