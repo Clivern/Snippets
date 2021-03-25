@@ -5,8 +5,10 @@
 ########################
 
 #------------------------------------------------------------------------
+# Strings & Arrays
+#-------------------
 from collections import Counter
-
+import math
 
 def is_unique(word):
     # O(N)
@@ -161,6 +163,22 @@ def zero_matrix(matrix):
     return matrix
 
 
+def count_occurrence(word, sentence):
+    # Count occurrence of a word in a sentence
+    count = 0
+    current_count = 0
+    word_counter = Counter(word)
+    sentence_counter = Counter(sentence)
+
+    for char, char_count in word_counter.items():
+        current_count = math.floor(sentence_counter[char] / char_count)
+
+        if current_count < count or count == 0:
+            count = current_count
+
+    return count
+
+
 def rotate_matrix(matrix):
     # Rotates a matrix 90 degrees clockwise
     pass
@@ -223,12 +241,16 @@ if __name__ == '__main__':
     ]
 
     assert zero_matrix(matrix) == result
+    assert count_occurrence("Hello", "heoppplloHHlkleHllo") == 2
+    assert count_occurrence("Hello", "heoppplloHHlkleeHllo") == 3
 
 #------------------------------------------------------------------------
 
 
 
 #------------------------------------------------------------------------
+# Linked Lists
+#-------------------
 class SingleNode():
     def __init__(self, data=None, next=None):
         self.data = data
@@ -461,43 +483,224 @@ if __name__ == '__main__':
 
 
 #------------------------------------------------------------------------
+# Queues and Stacks
+#-------------------
+class Stack():
+
+    def __init__(self):
+        self.stack = []
+
+    def enqueue(self, item):
+        self.stack.append(item)
+
+    def dequeue(self):
+        return self.stack.pop()
+
+    def __repr__(self):
+        return "[{}]".format(", ".join(self.stack))
+
+class Queue():
+
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        self.queue.insert(0, item)
+
+    def dequeue(self):
+        return self.queue.pop()
+
+    def __repr__(self):
+        return "[{}]".format(", ".join(self.queue))
+
+class MultiStack():
+
+    def __init__(self, count, size):
+        self.stack = [[] for _ in range(count)]
+        self.size = size
+
+    def is_full(self, stacknum):
+        return len(self.stack[stacknum-1]) >= self.size
+
+    def enqueue(self, stacknum, item):
+        if self.is_full(stacknum):
+            raise Exception("Stack {} is full".format(stacknum))
+        self.stack[stacknum-1].append(item)
+
+    def dequeue(self, stacknum):
+        return self.stack[stacknum-1].pop()
+
+    def __repr__(self):
+        return str(self.stack)
+
+
+if __name__ == '__main__':
+    stack = Stack()
+    stack.enqueue("A")
+    stack.enqueue("B")
+    stack.enqueue("C")
+    stack.enqueue("D")
+
+    assert stack.dequeue() == "D"
+    assert stack.dequeue() == "C"
+
+    queue = Queue()
+    queue.enqueue("A")
+    queue.enqueue("B")
+    queue.enqueue("C")
+    queue.enqueue("D")
+
+    assert queue.dequeue() == "A"
+    assert queue.dequeue() == "B"
+
+    mstack = MultiStack(3, 3)
+
+    mstack.enqueue(1, "A")
+    mstack.enqueue(1, "B")
+
+    mstack.enqueue(2, "A")
+    mstack.enqueue(2, "B")
+
+    mstack.enqueue(3, "A")
+    mstack.enqueue(3, "B")
+
+    assert mstack.dequeue(1) == "B"
+    assert mstack.dequeue(1) == "A"
+
+    assert mstack.dequeue(2) == "B"
+    assert mstack.dequeue(2) == "A"
+
+    assert mstack.dequeue(3) == "B"
+    assert mstack.dequeue(3) == "A"
+
+    assert str(mstack) == "[[], [], []]"
+#------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------
+# Trees and Graphs
+#-------------------
+class BinaryTree():
+
+    def __init__(self, value):
+        self.value = value
+        self.left_child = None
+        self.right_child = None
+
+    def insert_left(self, value):
+        if self.left_child:
+            child = BinaryTree(value)
+            child.left_child = self.left_child
+            self.left_child = child
+        else:
+            self.left_child = BinaryTree(value)
+
+    def insert_right(self, value):
+        if self.right_child:
+            child = BinaryTree(value)
+            child.right_child = self.right_child
+            self.right_child = child
+        else:
+            self.right_child = BinaryTree(value)
+
+    def pre_order(self):
+        print(self.value)
+
+        if self.left_child:
+            self.left_child.pre_order()
+
+        if self.right_child:
+            self.right_child.pre_order()
+
+    def post_order(self):
+        if self.left_child:
+            self.left_child.pre_order()
+
+        if self.right_child:
+            self.right_child.pre_order()
+
+        print(self.value)
+
+    def in_order(self):
+        if self.left_child:
+            self.left_child.pre_order()
+
+        print(self.value)
+
+        if self.right_child:
+            self.right_child.pre_order()
+
+
+
+class Graph():
+    pass
+
+
 if __name__ == '__main__':
     pass
 #------------------------------------------------------------------------
 
 
-
 #------------------------------------------------------------------------
+# Bit Manipulation
+#-------------------
+
+def bit_count(a, b):
+    return str(bin(a * b)).count('1')
+
+def text_to_binary(text):
+    return [bin(ord(s)) for s in text]
+
+def binary_to_text(binary_arr):
+    return "".join([chr(int(x, 2)) for x in binary_arr])
+
+
 if __name__ == '__main__':
-    pass
+    assert bit_count(3, 7) == 3
+    assert text_to_binary("AB") == ['0b1000001', '0b1000010']
+    assert binary_to_text(text_to_binary("A - 字")) == 'A - 字'
+
 #------------------------------------------------------------------------
 
 
-
 #------------------------------------------------------------------------
+# Sorting in Python
+#-------------------
+
+import math
+
+
+def order_hotels(hotels, ratings):
+    result = {}
+
+    for i in range(len(hotels)):
+        if hotels[i] in ratings.keys():
+            result[hotels[i]] = math.floor(sum(ratings[hotels[i]]) / len(ratings[hotels[i]]))
+        else:
+            result[hotels[i]] = 0
+
+    result = sorted(result.items(), key=lambda x: x[1], reverse=True)
+
+    return result
+
+
 if __name__ == '__main__':
-    pass
-#------------------------------------------------------------------------
+    assert str(order_hotels(["A", "B", "C"], {"A": [1,2 , 3], "B": [2]})) == "[('A', 2), ('B', 2), ('C', 0)]"
 
+    assert sorted([9, 4, 5], reverse=True, key=lambda x: x) == sorted([9, 4, 5], reverse=True) == [9, 5, 4]
+    assert sorted([9, 4, 5], key=lambda x: x) == sorted([9, 4, 5]) == [4, 5, 9]
 
+    di = {"A": 4, "B": 3}
+    # sort by dict value in asc
+    assert sorted(di.items(), key=lambda x: x[1]) == [('B', 3), ('A', 4)]
+    # sort by dict key in asc
+    assert sorted(di.items(), key=lambda x: x[0]) == [('A', 4), ('B', 3)]
 
-#------------------------------------------------------------------------
-if __name__ == '__main__':
-    pass
-#------------------------------------------------------------------------
-
-
-
-#------------------------------------------------------------------------
-if __name__ == '__main__':
-    pass
-#------------------------------------------------------------------------
-
-
-
-#------------------------------------------------------------------------
-if __name__ == '__main__':
-    pass
+    # sort by dict value in desc
+    assert sorted(di.items(), key=lambda x: x[1], reverse=True) == [('A', 4), ('B', 3)]
+    # sort by dict key in desc
+    assert sorted(di.items(), key=lambda x: x[0], reverse=True) == [('B', 3), ('A', 4)]
 #------------------------------------------------------------------------
 
 ]]></content>
