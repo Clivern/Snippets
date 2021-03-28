@@ -3,6 +3,30 @@
 from datetime import datetime
 from datetime import timedelta
 
+
+def hotel_availability(hotels, bookings, day):
+    """
+    Get top most available hotels on a certain day
+    """
+    day_dt = datetime.strptime(day, "%Y-%m-%d")
+
+    for i in range(len(bookings)):
+        checkin = datetime.strptime(bookings[i]['Checkin'], "%Y-%m-%d")
+        checkout = datetime.strptime(bookings[i]['Checkout'], "%Y-%m-%d")
+
+        if checkin <= day_dt and checkout > day_dt:
+            hotels[bookings[i]["Hotel"]] -= 1
+
+    result = []
+
+    hotels = sorted(hotels.items(), key=lambda x: x[1], reverse=True)
+
+    for k, v in hotels:
+        if v > 0:
+            result.append(k)
+
+    return result
+
 if __name__ == '__main__':
     assert datetime.now().strftime("%d-%m-%Y") == '28-03-2021'
     assert {i: 0 for i in range(10)} == {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0}
@@ -12,6 +36,20 @@ if __name__ == '__main__':
     assert [x for x in range(1, 6)] == [1, 2, 3, 4, 5]
     assert [x for x in range(6)] == [0, 1, 2, 3, 4, 5]
     assert [x for x in range(1, 6, 2)] == [1, 3, 5]
+    assert datetime.strptime('28-03-2021', "%d-%m-%Y").strftime("%Y-%m-%d") == '2021-03-28'
+
+    assert hotel_availability(
+        # Hotels and rooms available
+        {"Westin": 10, "Best Western": 20, "Hilton": 10},
+
+        # Hotel and checkin / checkout period
+        [
+            {"Hotel": "Hilton", "Checkin": "2015-04-02", "Checkout": "2015-04-03"},
+            {"Hotel": "Hilton", "Checkin": "2015-04-02", "Checkout": "2015-04-04"},
+            {"Hotel": "Hilton", "Checkin": "2015-05-01", "Checkout": "2015-05-20"}
+        ],
+        "2015-04-02"
+    ) == ['Best Western', 'Westin', 'Hilton']
 
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
