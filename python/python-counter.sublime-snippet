@@ -1,0 +1,121 @@
+<snippet>
+  <content><![CDATA[
+from collections import Counter
+
+def most_visited(lsts):
+    counter = Counter()
+
+    for i in range(len(lsts)):
+        counter = counter + Counter(lsts[i])
+    counter = counter.most_common(1)
+
+    return counter[0][0]
+
+def most_common(lsts):
+    count = Counter()
+
+    for i in range(len(lsts)):
+        count = count + Counter(set(lsts[i]))
+
+    count = count.most_common()
+
+    result = []
+
+    for (k, v) in count:
+        if v >= 2:
+            result.append(k)
+    return result
+
+
+def count_words(paragraph, words):
+    counter = Counter()
+
+    for i in range(len(words)):
+        counter[words[i]] = paragraph.count(words[i])
+
+    return counter
+
+
+def rating(words, reviews):
+    """
+    Rate hotels based on certain words on a review
+    If words len is N
+    hotels len is M
+    worst case reviews are X
+
+    Time Complexity something like O(M^(N*X))
+    """
+    counter = Counter()
+
+    for hotel_id in reviews.keys():
+        rate = 0
+
+        for i in range(len(reviews[hotel_id])):
+            for j in range(len(words)):
+                rate +=  reviews[hotel_id][i].count(words[j])
+
+        counter[hotel_id] = rate
+
+    # O(MlogM)
+    counter = counter.most_common()
+
+    return counter
+
+def max_residents(check_data, init_residents = 0):
+    """
+    Based on check in / check out data, get busy days
+    Complexity O(N)
+    """
+    residents = init_residents
+    counter = Counter()
+
+    for i in range(len(check_data)):
+        residents = residents + (check_data[i]['check-in'] - check_data[i]['check-out'])
+        counter[i+1] = residents
+
+    counter = counter.most_common()
+
+    return counter
+
+
+if __name__ == '__main__':
+    result = most_visited([
+        [2, 3, 1],
+        [2, 5, 3],
+        [7, 3, 1]
+    ])
+
+    assert result == 3
+
+    result = most_common([
+        [2, 3, 1],
+        [2, 5, 3],
+        [7, 3, 1]
+    ])
+
+    assert result == [3, 1, 2]
+
+    assert count_words("acacabcatghhellomvnsdb", ["aca","cat","hello","world"])["aca"] == 1
+
+    assert rating(
+        ["good", "nice", "great"],
+        {
+            "hotel_a": ["it was such a good period", "bad hotel"],
+            "hotel_b": ["it was such a nice period", "great experience"]
+        }
+    ) == [('hotel_b', 2), ('hotel_a', 1)]
+
+    assert max_residents([
+        {'check-in': 1, 'check-out': 4},
+        {'check-in': 2, 'check-out': 5},
+        {'check-in': 10, 'check-out': 12},
+        {'check-in': 5, 'check-out': 9},
+        {'check-in': 5, 'check-out': 12}
+    ]) == [(1, -3), (2, -6), (3, -8), (4, -12), (5, -19)]
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-python-counter</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>
