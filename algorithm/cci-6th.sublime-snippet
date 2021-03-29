@@ -184,6 +184,24 @@ def rotate_matrix(matrix):
     pass
 
 
+def balanced(data):
+    stack = []
+    for i in range(len(data)):
+        if data[i] == '[' or data[i] == '(' or data[i] == '{':
+            stack.append(data[i])
+        else:
+            char = stack.pop()
+
+            if (char == '[' and data[i] == ']') or (char == '(' and data[i] == ')') or (char == '{' and data[i] == '}'):
+                continue
+            else:
+                return False
+    if len(stack) == 0:
+        return True
+
+    return False
+
+
 if __name__ == '__main__':
     assert is_unique('heh') == False
     assert is_unique('Helo') == True
@@ -243,6 +261,11 @@ if __name__ == '__main__':
     assert zero_matrix(matrix) == result
     assert count_occurrence("Hello", "heoppplloHHlkleHllo") == 2
     assert count_occurrence("Hello", "heoppplloHHlkleeHllo") == 3
+
+    assert balanced("{[()]}") == True
+    assert balanced("{[(])}") == False
+    assert balanced("{{[[(())]]}}{]") == False
+    assert balanced("{{[[(())]]}}{}") == True
 
 #------------------------------------------------------------------------
 
