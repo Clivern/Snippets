@@ -25,7 +25,6 @@ let str3 = `Hello from ${str1}`;
 
 console.log(`1 + 2 = ${1 + 2}`);
 
-
 let msg1 = null;
 let msg2;
 
