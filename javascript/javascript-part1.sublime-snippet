@@ -1,0 +1,43 @@
+<snippet>
+  <content><![CDATA[
+[1, 2].forEach(function(x){ console.log(x); });
+
+(function() {
+  'use strict';
+  console.log("Hello World");
+})();
+
+let message = "hello";
+
+message = "something else";
+
+console.log(message);
+
+let name = "Joe", age = 20;
+var old_school = "old";
+
+// we can not reassign constants
+const MALE = 'male';
+
+let str1 = "str 1";
+let str2 = 'str 2';
+let str3 = `Hello from ${str1}`;
+
+console.log(`1 + 2 = ${1 + 2}`);
+
+
+let msg1 = null;
+let msg2;
+
+console.log(msg2 == undefined);
+console.log(msg2 == null);
+
+typeof "dd"; // string
+typeof null; // object
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-javascript-part1</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.js</scope>
+</snippet>
