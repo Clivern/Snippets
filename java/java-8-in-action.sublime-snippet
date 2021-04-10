@@ -10,7 +10,8 @@ public class App {
         apples.add(new Apple("#2", "red"));
         apples.add(new Apple("#3", "yellow"));
         apples.add(new Apple("#4", "red"));
-        System.out.println(Apple.filter(apples, Apple::isRed));
+        System.out.println(Apple.filter(apples, Apple::isRed)); // [<#2>red, <#4>red]
+        System.out.println(Apple.filter(apples, (Apple apple) -> apple.getColor().equals("red"))); // [<#2>red, <#4>red]
     }
 }
 
@@ -37,6 +38,10 @@ class Apple {
         }
 
         return result;
+    }
+
+    public String getColor() {
+        return this.color;
     }
 
     @Override
