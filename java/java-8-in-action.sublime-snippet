@@ -1,0 +1,57 @@
+<snippet>
+  <content><![CDATA[
+import java.util.List;
+import java.util.ArrayList;
+
+public class App {
+    public static void main(String[] args) {
+        List < Apple > apples = new ArrayList < > ();
+        apples.add(new Apple("#1", "green"));
+        apples.add(new Apple("#2", "red"));
+        apples.add(new Apple("#3", "yellow"));
+        apples.add(new Apple("#4", "red"));
+        System.out.println(Apple.filter(apples, Apple::isRed));
+    }
+}
+
+class Apple {
+    private String color;
+    private String id;
+
+    Apple(String id, String color) {
+        this.id = id;
+        this.color = color;
+    }
+
+    public static boolean isRed(Apple apple) {
+        return apple.color.equals("red");
+    }
+
+    public static List < Apple > filter(List < Apple > lst, Predicate < Apple > p) {
+        List < Apple > result = new ArrayList < > ();
+
+        for (Apple apple: lst) {
+            if (p.test(apple)) {
+                result.add(apple);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "<" + this.id + ">" + this.color;
+    }
+}
+
+interface Predicate < T > {
+    boolean test(T item);
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-java-8-in-action</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.java</scope>
+</snippet>
