@@ -1,6 +1,7 @@
 <snippet>
   <content><![CDATA[
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 
 public class App {
@@ -10,8 +11,46 @@ public class App {
         apples.add(new Apple("#2", "red"));
         apples.add(new Apple("#3", "yellow"));
         apples.add(new Apple("#4", "red"));
+
         System.out.println(Apple.filter(apples, Apple::isRed)); // [<#2>red, <#4>red]
+
         System.out.println(Apple.filter(apples, (Apple apple) -> apple.getColor().equals("red"))); // [<#2>red, <#4>red]
+
+        System.out.println(Apple.filterGeneric(apples, (Apple apple) -> apple.getColor().equals("red"))); // [<#2>red, <#4>red]
+
+        // Anonymous Class
+        System.out.println(Apple.filter(apples, new Predicate<Apple> (){
+            // test method implementation
+            public boolean test(Apple a) {
+                return a.getColor().equals("green");
+            }
+        }));
+
+        List<Integer> rs = Apple.map(Arrays.asList("A", "AB", "ABC"), (String a) -> a.length()); // [1, 2, 3]
+
+        System.out.println(rs);
+
+        Thread r1 = new Thread(new Runnable() {
+            public void run() {
+                System.out.println("Hello World 1");
+            }
+        });
+
+        Thread r2 = new Thread(() -> System.out.println("Hello World 2"));
+
+        Runnable an = () -> System.out.println("Hello World 3");
+
+        Thread r3 = new Thread(an);
+
+        Thread r4 = new Thread(() -> {
+            System.out.println("Hello World 4");
+            System.out.println("Hello World 5");
+        });
+
+        r1.run();
+        r2.run();
+        r3.run();
+        r4.run();
     }
 }
 
@@ -40,6 +79,28 @@ class Apple {
         return result;
     }
 
+    public static <T> List<T> filterGeneric(List<T> list, Predicate <T> p) {
+        List <T> result = new ArrayList<>();
+
+        for (T item: list) {
+            if (p.test(item)) {
+                result.add(item);
+            }
+        }
+
+        return result;
+    }
+
+    public static <T, R> List<R> map(List<T> list, Function<T, R> f) {
+        List <R> result = new ArrayList<>();
+
+        for (T item: list) {
+            result.add(f.apply(item));
+        }
+
+        return result;
+    }
+
     public String getColor() {
         return this.color;
     }
@@ -50,8 +111,14 @@ class Apple {
     }
 }
 
+@FunctionalInterface
 interface Predicate < T > {
     boolean test(T item);
+}
+
+@FunctionalInterface
+interface Function <T, R> {
+    R apply(T t);
 }
 
 ]]></content>
