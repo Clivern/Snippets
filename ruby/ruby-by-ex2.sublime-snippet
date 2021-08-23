@@ -1,0 +1,241 @@
+<snippet>
+  <content><![CDATA[
+class Persion
+	attr_accessor :age, :name, :gender
+end
+
+
+per = Persion.new
+per.age = 20
+per.name = "Joe Doe"
+per.gender = "Male"
+
+
+puts per.name
+
+class Pet
+	attr_accessor :name
+end
+
+class Dog < Pet
+	def bark(i)
+		i.times do
+			puts "Whoof"
+		end
+	end
+
+	def say(a, b)
+		puts a
+		puts b
+	end
+end
+
+poodle = Dog.new
+poodle.name = "Joe"
+
+puts poodle.name
+puts poodle.bark(33)
+puts poodle.class
+
+puts 3 + 3 + 6
+puts 2.class
+
+Kernel.puts "Hello World!"
+
+poodle.say("Hey", "There!")
+
+puts "HY".length
+
+puts "H" + "I"
+
+puts "hello".capitalize
+puts "HELLO".downcase
+puts "test".chop.chop
+puts "KLLO".next
+
+def glo
+	puts "GLO"
+end
+
+glo
+
+puts 5 + 7
+
+x = 50
+y = 20
+
+puts x + y
+
+z  = 2
+z *= x
+
+puts z
+
+puts "High" if z > 900
+
+puts "LOw" if z > 30 && x > 40
+
+
+age = 20
+
+puts "Young" unless age > 20
+
+puts "Young" if age <= 20
+
+puts "Young" if age.between?(0, 20)
+
+2.times { puts "Something!" }
+1.upto(5) { puts "Another!" }
+5.downto(1) { puts "DOWN!" }
+
+
+30.times do |n|
+	puts n
+end
+
+0.step(50, 5) do |n|
+	puts n
+end
+
+
+df = %{Hey
+	There Bla
+}
+
+puts df
+
+puts "A".ord
+puts 65.chr
+
+puts 'x' > 'y'
+
+
+puts "10 + 20 = #{10 + 20}"
+
+x = 10
+y = 20
+
+puts "x + y = #{x + y}"
+
+puts "foobar".sub("bar", "foo")
+
+puts "this is a new world".gsub("i", "")
+puts "this is a new world".sub(/^../, "")
+
+
+"abcdef".scan(/./) do |x|
+	puts x
+end
+
+"abcdef".scan(/../) do |x|
+	puts x
+end
+
+"i bought a cake for 20$".scan(/\d+/) { |match| puts match }
+
+puts "match" if "match".match(/[aeop]/)
+
+s = "match".match(/([aeocp])([aeocp])/)
+puts s
+
+u = []
+u << "H"
+u.push("K")
+
+puts u.inspect
+puts u.length
+puts u.pop
+
+p = ["A", "B", "C"]
+puts p.join
+puts p.join(", ")
+
+puts "hello world".split(/\s+/).inspect
+p "a b".split(/\s+/)
+
+p per
+
+
+[1, 2, 3, 4].each do |x|
+	p x
+end
+
+[1, 2, 3, 4, 5, 6].collect { |x| x * 3 }
+
+x = [1, 2, 3]
+y = [3, 4, 5]
+
+p x + y
+p x - y
+p x if !x.empty?
+
+
+p x.include?('x')
+p x.include?(3)
+
+p x.first
+p x.last
+p x.reverse
+p x.first(1)
+p x.last(2)
+
+
+hm = {"a": 5, "b": 8, "c": 10}
+
+hm.each do |k, v|
+	puts "#{k} = #{v}"
+end
+
+hm.delete_if { |k, v| v > 5 }
+
+p hm
+
+p Time.now
+
+p Time.now - 60
+
+p Time.utc(2021, 10, 23, 12, 9, 56)
+
+p Time.now.gmt?
+p Time.now.utc?
+p Time.utc(2021, 10, 23, 12, 9, 56).utc?
+
+
+('a'..'z').to_a.each do |letter|
+	p letter
+end
+
+p ('a'..'z').include?('a')
+p ('a'..'z').include?('A')
+
+a = [1, 2, 3, 4, 5, 6]
+
+p a[2..4]
+
+gender = :male
+
+p "joe is a male" if gender == :male
+p "joe is a female" if gender == :female
+
+s = { :name => "joe", :age => 20 }
+
+p s[:name]
+p s[:age]
+
+
+s.each do |k, v|
+	puts "#{k} == #{v}"
+end
+
+p 20.to_s
+p "20".to_i
+p "20".to_f
+p "name".to_sym
+p gender.to_s
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-ruby-by-ex2</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rb</scope>
+</snippet>

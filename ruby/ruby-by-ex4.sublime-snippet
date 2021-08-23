@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+require_relative 'a'
+require_relative 'a'
+
+load 'a.rb'
+load 'a.rb'
+load 'a.rb'
+
+$:.each do |d|
+	p d
+end
+
+$:.push '/users/rb'
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-ruby-by-ex4</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rb</scope>
+</snippet>

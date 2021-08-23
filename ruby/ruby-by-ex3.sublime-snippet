@@ -1,0 +1,240 @@
+<snippet>
+  <content><![CDATA[
+class Shape
+end
+
+class Square < Shape
+	def initialize(side_length)
+		@side_length = side_length
+	end
+
+	def area
+		@side_length * @side_length
+	end
+end
+
+class Triangle < Shape
+	def initialize(width, height)
+		@width = width
+		@height = height
+	end
+
+	def area
+		@width * (@height / 2)
+	end
+end
+
+m_square = Square.new(5)
+m_triangle = Triangle.new(6, 3)
+
+
+p m_square.area
+p m_triangle.area
+
+$x = 20
+
+def glob_x
+	y = $x
+	p y
+end
+
+glob_x
+
+class Circle < Shape
+	def initialize
+		if defined?(@@count)
+			@@count += 1
+		else
+			@@count = 1
+		end
+	end
+
+	def get_count
+		@@count
+	end
+end
+
+c = Circle.new
+d = Circle.new
+
+p d.get_count
+
+class Student
+
+	def self.test
+		p "Class Method"
+	end
+
+	def test2
+		p "Insance Method"
+	end
+end
+
+Student.test
+Student.new.test2
+
+
+class Person
+	def initialize(name)
+		@name = name
+	end
+
+	def name
+		@name
+	end
+end
+
+class Doctor < Person
+	def name
+		"Dr. #{super}"
+	end
+end
+
+p Doctor.new("Joe").name
+
+# Override class methods
+class Doctor < Person
+	def name
+		"Dr: #{super}"
+	end
+end
+
+p Doctor.new("Joe").name
+
+txt = "hello"
+
+p txt.methods
+
+
+joe = Doctor.new("Joe")
+p joe.instance_variables
+
+
+class Car
+	public
+	def any_one_can_call
+		p "any_one_can_call"
+	end
+
+	private
+	def nobody_can_call
+		p "nobody_can_call"
+	end
+
+	public
+	def anyone_can_call
+		p "anyone_can_call"
+	end
+end
+
+Car.new.any_one_can_call
+Car.new.anyone_can_call
+
+
+class Somebody
+	def initialize(age)
+		@age = age
+	end
+
+	def age
+		@age
+	end
+
+	protected :age
+end
+
+p Somebody.new(20)
+
+class Drawing
+	def self.give_me_circle
+		Circle.new
+	end
+
+	class Line
+	end
+
+	class Circle
+		def what_i_am
+			"Circle"
+		end
+	end
+end
+
+p Drawing.give_me_circle
+p Drawing::Circle.new
+
+
+# Modules
+module Country
+	class Ruler
+		attr_accessor :name
+	end
+end
+
+a = Country::Ruler.new
+a.name = "Joe"
+
+p a
+
+# Mix-Ins
+module Features
+	def class_name
+		self.class.to_s
+	end
+end
+
+class Dude
+	include Features
+end
+
+c = Dude.new
+p c.class_name
+
+module Hogo
+	def tell
+		p "Hello World"
+	end
+end
+
+include Hogo
+
+tell
+
+letters = %w{a b c d e f}
+letters.each { |l| p l }
+
+p [1, 2, 3, 5].min
+p [1, 2, 3, 5].max
+p [9, 1, 2, 3, 5].sort
+p [1, 2, 3, 5].collect { |i| i.to_s + "x" }
+p [1, 2, 3, 5].select { |i| i.between?(1, 3) }
+p [1, 2, 3, 5].detect { |i| i.between?(1, 3) }
+
+
+class Human
+	include Comparable
+
+	attr_accessor :age
+
+	def <=>(other)
+		@age <=> other.age
+	end
+
+	def initialize(age)
+		@age = age
+	end
+end
+
+t = Human.new(10)
+j = Human.new(15)
+q = Human.new(20)
+
+p t > j
+p q > j
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-ruby-by-ex3</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rb</scope>
+</snippet>

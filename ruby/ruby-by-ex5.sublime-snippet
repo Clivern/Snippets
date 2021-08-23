@@ -1,0 +1,78 @@
+<snippet>
+  <content><![CDATA[
+# Something goes here
+class Person
+
+	# Method test
+	def test
+		p "Hey"
+	end
+end
+
+# run rdoc file.rb
+
+class BadDataException < RuntimeError
+end
+
+class Student
+
+	def initialize(name, age)
+		raise ArgumentError, "Student name is missing" if name.empty?
+		raise BadDataException, "Student age is missing" if age <= 0
+		@name = name
+		@age = age
+	end
+
+	def name
+		@name
+	end
+
+	def age
+		@age
+	end
+end
+
+p Student.new("Joe", 19).name
+p Student.new("Doe", 20).name
+
+begin
+	p Student.new("", 19).name
+rescue ArgumentError => e
+	puts "#{e.class}, #{e}"
+end
+
+begin
+	p Student.new("Joe", 0).name
+rescue BadDataException => e
+	puts "#{e.class}, #{e}"
+end
+
+begin
+	p Student.new("", 0).name
+rescue StandardError => e
+	puts "#{e.class}, #{e}"
+end
+
+begin
+	p Student.new("", 8).name
+rescue ArgumentError => e
+	puts "#{e.class}, #{e}"
+rescue BadDataException => e
+	puts "#{e.class}, #{e}"
+rescue => e
+	puts "#{e.class}, #{e}"
+end
+
+catch(:finish) do
+	1000.times do |x|
+		p x
+		throw :finish if x == 10
+	end
+end
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-ruby-by-ex5</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.rb</scope>
+</snippet>
