@@ -174,10 +174,7 @@ class Heap():
         return len(self.heap)
 
     def heapsort(self):
-        h = []
-        for value in self.heap:
-            heappush(h, value)
-        self.heap = [heappop(h) for i in range(len(h))]
+        self.heap = [heappop(self.heap.copy()) for i in range(len(h))]
 
     def __repr__(self):
         return str(self.heap)
@@ -384,6 +381,149 @@ class Strings():
 
     def get_string(self):
         return self.elem
+
+
+class Set(object):
+    """
+    Sets: Python’s built-in set type has the following characteristics:
+
+    - Sets are unordered.
+    - Set elements are unique. Duplicate elements are not allowed.
+    - A set itself may be modified, but the elements contained in the set must be of an immutable type.
+    """
+    def __init__(self):
+        self.set = set()
+
+    def from_list(self, lst):
+        self.set = set(lst)
+
+    def from_tuple(self, tpl):
+        self.set = set(tpl)
+
+    def union(self, other_set):
+        """Gets all elements from the two sets
+        it is the same like set1 | set2 | set3 ...
+        """
+        return self.set.union(other_set)
+
+    def intersection(self, other_set):
+        """Gets all elements that are present in any of the specified sets.
+        it is the same like set1 & set2 & set3 ...
+        """
+        return self.set.intersection(other_set)
+
+    def difference(self, other_set):
+        """Gets all elements that are present is set but not in other_set
+        it is the same like set1 - set2 - set3 ...
+        """
+        return self.set.difference(other_set)
+
+    def symmetric_difference(self, other_set):
+        """Gets the set of all elements in either set or other_set, but not both:
+        it is the same like set1 ^ set2 ^ set3 ...
+        """
+        return self.set.symmetric_difference(other_set)
+
+    def isdisjoint(self, other_set):
+        """returns True if set and other_set have no elements in common:
+        it is the same like set & other_set is empty set
+        """
+        return self.set.isdisjoint(other_set)
+
+    def issubset(self, other_set):
+        """Determine whether one set is a subset of the other. it return true if they are identical
+        it is the same like set <= other_set (less than or equal)
+        """
+        return self.set.issubset(other_set)
+
+    def issuperset(self, other_set):
+        """Determine whether one set is a superset of the other. it return true if they are identical
+        it is the same like set >= other_set (more than or equal)
+        """
+        return self.set.issuperset(other_set)
+
+    def add(self, elem):
+        """Adds an element to the set"""
+        return self.set.add(elem)
+
+    def remove(self, elem):
+        """Removes an element from the set. Python raises an exception if <elem> is not there"""
+        return self.set.remove(elem)
+
+    def discard(self, elem):
+        """Removes an element from the set. this method quietly does nothing if <elem> is not there"""
+        return self.set.discard(elem)
+
+    def clear(self):
+        """Clears a set"""
+        return self.set.clear()
+
+    def pop(self):
+        """ removes and returns an arbitrarily chosen element from a set. If the set is empty, set.pop() raises an exception"""
+        return self.set.pop()
+
+    def __repr__(self):
+        return str(self.set)
+
+
+class Frozenset(object):
+    """
+    Frozenset: It is exactly like a set, except that a frozenset is immutable.
+    You can perform non-modifying operations on a frozenset
+    """
+    def __init__(self):
+        self.fset = frozenset()
+
+    def from_list(self, lst):
+        self.fset = frozenset(lst)
+
+    def from_tuple(self, tpl):
+        self.fset = frozenset(tpl)
+
+    def union(self, other_set):
+        """Gets all elements from the two sets
+        it is the same like set1 | set2 | set3 ...
+        """
+        return self.fset.union(other_set)
+
+    def intersection(self, other_set):
+        """Gets all elements that are present in any of the specified sets.
+        it is the same like set1 & set2 & set3 ...
+        """
+        return self.fset.intersection(other_set)
+
+    def difference(self, other_set):
+        """Gets all elements that are present is set but not in other_set
+        it is the same like set1 - set2 - set3 ...
+        """
+        return self.fset.difference(other_set)
+
+    def symmetric_difference(self, other_set):
+        """Gets the set of all elements in either set or other_set, but not both:
+        it is the same like set1 ^ set2 ^ set3 ...
+        """
+        return self.fset.symmetric_difference(other_set)
+
+    def isdisjoint(self, other_set):
+        """returns True if set and other_set have no elements in common:
+        it is the same like set & other_set is empty set
+        """
+        return self.fset.isdisjoint(other_set)
+
+    def issubset(self, other_set):
+        """Determine whether one set is a subset of the other. it return true if they are identical
+        it is the same like set <= other_set (less than or equal)
+        """
+        return self.fset.issubset(other_set)
+
+    def issuperset(self, other_set):
+        """Determine whether one set is a superset of the other. it return true if they are identical
+        it is the same like set >= other_set (more than or equal)
+        """
+        return self.fset.issuperset(other_set)
+
+    def __repr__(self):
+        return str(self.fset)
 
 
 """
@@ -715,149 +855,6 @@ class BinaryTree:
             self.right_child.post_order()
 
         print(self.value)
-
-
-class Set(object):
-    """
-    Sets: Python’s built-in set type has the following characteristics:
-
-    - Sets are unordered.
-    - Set elements are unique. Duplicate elements are not allowed.
-    - A set itself may be modified, but the elements contained in the set must be of an immutable type.
-    """
-    def __init__(self):
-        self.set = set()
-
-    def from_list(self, lst):
-        self.set = set(lst)
-
-    def from_tuple(self, tpl):
-        self.set = set(tpl)
-
-    def union(self, other_set):
-        """Gets all elements from the two sets
-        it is the same like set1 | set2 | set3 ...
-        """
-        return self.set.union(other_set)
-
-    def intersection(self, other_set):
-        """Gets all elements that are present in any of the specified sets.
-        it is the same like set1 & set2 & set3 ...
-        """
-        return self.set.intersection(other_set)
-
-    def difference(self, other_set):
-        """Gets all elements that are present is set but not in other_set
-        it is the same like set1 - set2 - set3 ...
-        """
-        return self.set.difference(other_set)
-
-    def symmetric_difference(self, other_set):
-        """Gets the set of all elements in either set or other_set, but not both:
-        it is the same like set1 ^ set2 ^ set3 ...
-        """
-        return self.set.symmetric_difference(other_set)
-
-    def isdisjoint(self, other_set):
-        """returns True if set and other_set have no elements in common:
-        it is the same like set & other_set is empty set
-        """
-        return self.set.isdisjoint(other_set)
-
-    def issubset(self, other_set):
-        """Determine whether one set is a subset of the other. it return true if they are identical
-        it is the same like set <= other_set (less than or equal)
-        """
-        return self.set.issubset(other_set)
-
-    def issuperset(self, other_set):
-        """Determine whether one set is a superset of the other. it return true if they are identical
-        it is the same like set >= other_set (more than or equal)
-        """
-        return self.set.issuperset(other_set)
-
-    def add(self, elem):
-        """Adds an element to the set"""
-        return self.set.add(elem)
-
-    def remove(self, elem):
-        """Removes an element from the set. Python raises an exception if <elem> is not there"""
-        return self.set.remove(elem)
-
-    def discard(self, elem):
-        """Removes an element from the set. this method quietly does nothing if <elem> is not there"""
-        return self.set.discard(elem)
-
-    def clear(self):
-        """Clears a set"""
-        return self.set.clear()
-
-    def pop(self):
-        """ removes and returns an arbitrarily chosen element from a set. If the set is empty, set.pop() raises an exception"""
-        return self.set.pop()
-
-    def __repr__(self):
-        return str(self.set)
-
-
-class Frozenset(object):
-    """
-    Frozenset: It is exactly like a set, except that a frozenset is immutable.
-    You can perform non-modifying operations on a frozenset
-    """
-    def __init__(self):
-        self.fset = frozenset()
-
-    def from_list(self, lst):
-        self.fset = frozenset(lst)
-
-    def from_tuple(self, tpl):
-        self.fset = frozenset(tpl)
-
-    def union(self, other_set):
-        """Gets all elements from the two sets
-        it is the same like set1 | set2 | set3 ...
-        """
-        return self.fset.union(other_set)
-
-    def intersection(self, other_set):
-        """Gets all elements that are present in any of the specified sets.
-        it is the same like set1 & set2 & set3 ...
-        """
-        return self.fset.intersection(other_set)
-
-    def difference(self, other_set):
-        """Gets all elements that are present is set but not in other_set
-        it is the same like set1 - set2 - set3 ...
-        """
-        return self.fset.difference(other_set)
-
-    def symmetric_difference(self, other_set):
-        """Gets the set of all elements in either set or other_set, but not both:
-        it is the same like set1 ^ set2 ^ set3 ...
-        """
-        return self.fset.symmetric_difference(other_set)
-
-    def isdisjoint(self, other_set):
-        """returns True if set and other_set have no elements in common:
-        it is the same like set & other_set is empty set
-        """
-        return self.fset.isdisjoint(other_set)
-
-    def issubset(self, other_set):
-        """Determine whether one set is a subset of the other. it return true if they are identical
-        it is the same like set <= other_set (less than or equal)
-        """
-        return self.fset.issubset(other_set)
-
-    def issuperset(self, other_set):
-        """Determine whether one set is a superset of the other. it return true if they are identical
-        it is the same like set >= other_set (more than or equal)
-        """
-        return self.fset.issuperset(other_set)
-
-    def __repr__(self):
-        return str(self.fset)
 
 
 class Collections():
