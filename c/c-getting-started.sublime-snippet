@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+#include <stdio.h>
+#include <stdlib.h>
+
+// gcc -o hello hello.c
+// ./hello
+int main(void)
+{
+    puts("Hello World");
+    return 0;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-c-getting-started</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c</scope>
+</snippet>

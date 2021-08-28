@@ -1,0 +1,35 @@
+<snippet>
+  <content><![CDATA[
+#include <stdio.h>
+#include <stdlib.h>
+
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+#define SUCCESS_OUTPUT 0;
+
+// $ gcc -o hello hello.c
+// $ ./hello
+// a = 20, b = 30
+// a = 30, b = 20
+int main(void)
+{
+    int a = 20;
+    int b = 30;
+
+    printf("a = %d, b = %d \n", a, b);
+    swap(&a, &b);
+    printf("a = %d, b = %d \n", a, b);
+
+    return SUCCESS_OUTPUT;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-c-reference-example</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c</scope>
+</snippet>
