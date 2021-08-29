@@ -1,0 +1,63 @@
+<snippet>
+  <content><![CDATA[
+#include <iostream>
+#include <climits>
+
+const int PI = 20;
+
+// $ g++ -o hello hello.cpp
+// $ ./hello
+// PI = 20
+// Size of char : 1 byte
+// Size of int : 4 bytes
+// Size of short int : 2 bytes
+// Size of long int : 8 bytes
+// Size of signed long int : 8 bytes
+// Size of unsigned long int : 8 bytes
+// Size of float : 4 bytes
+// Size of double : 8 bytes
+// A = 1
+// B = 20000
+// C = 30000
+// D = 4000
+// F = A
+// G = 2.3
+// H = 5.02736
+int main()
+{
+    bool a = true;
+    long int b = 20000;
+    long int c = 30000l;
+    unsigned short int d = 4000;
+    char f = 'A';
+    float g = 2.3;
+    double h = 5.027362;
+
+    std::cout << "PI = " << PI << std::endl;
+
+    std::cout << "Size of char : " << sizeof(char) << " byte" << std::endl;
+    std::cout << "Size of int : " << sizeof(int) << " bytes" << std::endl;
+    std::cout << "Size of short int : " << sizeof(short int) << " bytes" << std::endl;
+    std::cout << "Size of long int : " << sizeof(long int) << " bytes" << std::endl;
+    std::cout << "Size of signed long int : " << sizeof(signed long int) << " bytes" << std::endl;
+    std::cout << "Size of unsigned long int : " << sizeof(unsigned long int) << " bytes" << std::endl;
+    std::cout << "Size of float : " << sizeof(float) << " bytes" << std::endl;
+    std::cout << "Size of double : " << sizeof(double) << " bytes" << std::endl;
+
+    std::cout << "A = " << a << std::endl;
+    std::cout << "B = " << b << std::endl;
+    std::cout << "C = " << c << std::endl;
+    std::cout << "D = " << d << std::endl;
+    std::cout << "F = " << f << std::endl;
+    std::cout << "G = " << g << std::endl;
+    std::cout << "H = " << h << std::endl;
+
+    return 0;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-cpp-hello-world</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.cpp</scope>
+</snippet>
