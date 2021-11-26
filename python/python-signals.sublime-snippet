@@ -1,0 +1,55 @@
+<snippet>
+  <content><![CDATA[
+import signal
+import os
+import time
+import sys
+
+def readConfiguration(signalNumber, frame):
+    print ('(SIGHUP) reading configuration')
+    return
+
+def terminateProcess(signalNumber, frame):
+    print ('(SIGTERM) terminating the process')
+    print ('(SIGTERM) Doing some cleanup')
+    time.sleep(3)
+    sys.exit()
+
+def receiveSignal(signalNumber, frame):
+    print('Received:', signalNumber)
+    return
+
+# kill -l
+# kill -1 $ID
+# kill -15 $ID
+if __name__ == '__main__':
+    signal.signal(signal.SIGHUP, readConfiguration)
+    signal.signal(signal.SIGINT, receiveSignal)
+    signal.signal(signal.SIGQUIT, receiveSignal)
+    signal.signal(signal.SIGILL, receiveSignal)
+    signal.signal(signal.SIGTRAP, receiveSignal)
+    signal.signal(signal.SIGABRT, receiveSignal)
+    signal.signal(signal.SIGBUS, receiveSignal)
+    signal.signal(signal.SIGFPE, receiveSignal)
+    #signal.signal(signal.SIGKILL, receiveSignal)
+    signal.signal(signal.SIGUSR1, receiveSignal)
+    signal.signal(signal.SIGSEGV, receiveSignal)
+    signal.signal(signal.SIGUSR2, receiveSignal)
+    signal.signal(signal.SIGPIPE, receiveSignal)
+    signal.signal(signal.SIGALRM, receiveSignal)
+    signal.signal(signal.SIGTERM, terminateProcess)
+
+    # output current process id
+    print('My PID is:', os.getpid())
+
+    # wait in an endless loop for signals
+    while True:
+        print('Waiting...')
+        time.sleep(3)
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-python-datetime</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>

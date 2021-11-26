@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+class OnlyOne:
+    class __OnlyOne:
+        def __init__(self, arg):
+            self.val = arg
+        def __str__(self):
+            return repr(self) + self.val
+
+    instance = None
+
+    def __init__(self, arg):
+        if not OnlyOne.instance:
+            OnlyOne.instance = OnlyOne.__OnlyOne(arg)
+        else:
+            OnlyOne.instance.val = arg
+
+    def __getattr__(self, name):
+        return getattr(self.instance, name)
+
+
+if __name__ == '__main__':
+  x = OnlyOne('sausage')
+  y = OnlyOne('eggs')
+  z = OnlyOne('spam')
+
+  print(z) # <__main__.OnlyOne object at 0x100ff2e20>
+  print(x) # <__main__.OnlyOne object at 0x100ff2fd0>
+  print(y) # <__main__.OnlyOne object at 0x100ff2f10>
+
+  print(z.val) # spam
+  print(x.val) # spam
+  print(y.val) # spam
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>clivern-singleton-pattern-python</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>
